@@ -11,6 +11,7 @@ def process(request):
 
     for c in string.punctuation:
         text = text.replace(c, "")
+
     text = text.lower().split(' ')
     cnt = Counter()
 
