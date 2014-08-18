@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+      <div class="starter-template">
+        <h1>Bootstrap starter template</h1>
+        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+      </div>
+      <form class="form-signin" role="form" action="/process" method="POST">
+        {% csrf_token %}
+        <h2 class="form-signin-heading">Please enter your text</h2>
+        <textarea name="text" cols="50" rows="10"></textarea>
+        <button class="btn btn-primary" type="submit">Check</button>
+      </form>
+{% endblock %}
