@@ -8,7 +8,11 @@
     <meta name="author" content="">
 {#    <link rel="icon" href="../../favicon.ico">#}
 
-    <title>Starter Template for Bootstrap</title>
+    <title>Verba</title>
+
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -47,22 +51,133 @@
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
+          <ul id="userOnSite" class="navbar-form navbar-right">
+             {% if user.is_authenticated %}
+                <span class="glyphicon glyphicon-user"></span>
+                <span class="glyphicon-class">{{ user.email }}</span>
+                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#signOut">Sign out</button>
+             {% else %}
+                <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#signIn">Sign in</button>
+                <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#signUp">Sign up</button>
+             {% endif %}
+          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
-    <div class="container">
 
+    <div class="container">
     {% block content %}
     {% endblock %}
 
     </div><!-- /.container -->
+        <!-- Button trigger modal -->
 
+    <!-- Modal signIn-->
+    <div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div id="modal-content-sign-in"  class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h3 class="modal-title" id="myModalLabel">Please sign in</h3>
+          </div>
+          <div class="modal-body">
+            <form class="form-signin" role="form">
+                <input id='myEmail' name="myEmailAddress" type="email" class="form-control" placeholder="Email address" autofocus="">
+                <input id='myPassword' name="mySecretPassword" type="password" class="form-control" placeholder="Password">
+                <div class='invalidInput'>Invalid password or user name!</div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                  </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal signOut -->
+    <div class="modal fade" id="signOut" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div id="modal-content-sign-in"  class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Please confirm your sign Out</h4>
+          </div>
+          <div class="modal-footer">
+            <form class="form-signout" role="form" method="post" action="accounts/logout">
+                {% csrf_token %}
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-warning" name="signOut" value="logout">Sign out</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal signUp -->
+    <div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div id="modal-content-sign-in"  class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Please enter your registration data</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-signup" role="form">
+                <input id='myNewEmail' name="myNewEmail" type="email" class="form-control" placeholder="Email address" autofocus="">
+                <input id='myNewPassword' name="myNewPassword" type="password" class="form-control" placeholder="Password">
+                <input id='myNewPasswordConfirm' name="myNewPasswordConfirm" type="password" class="form-control" placeholder="Confirm password">
+                <div class='invalidUserName'>Sorry. This user name is already exist.</div>
+                <div class='invalidPassword'>Password and confirm does not match!</div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                  </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Thank you! -->
+    <div class="modal fade" id="ThankYou" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div id="modal-content-sign-in"  class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h3 class="modal-title" id="myModalLabel">Thank you for registration!</h3>
+          </div>
+{#          <div class="modal-body">#}
+{#            <form class="form-signup" role="form">#}
+{#                <input id='myNewEmail' name="myNewEmail" type="email" class="form-control" placeholder="Email address" autofocus="">#}
+{#                <input id='myNewPassword' name="myNewPassword" type="password" class="form-control" placeholder="Password">#}
+{#                <input id='myNewPasswordConfirm' name="myNewPasswordConfirm" type="password" class="form-control" placeholder="Confirm password">#}
+{#                <div class='invalidUserName'>Sorry. This user name is already exist.</div>#}
+{#                <div class='invalidPassword'>Password and confirm does not match!</div>#}
+{#                <div class="checkbox">#}
+{#                  <label>#}
+{#                    <input type="checkbox" value="remember-me"> Remember me#}
+{#                  </label>#}
+{#                </div>#}
+{#                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>#}
+{#            </form>#}
+{#          </div>#}
+        </div>
+      </div>
+    </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="/static/js/common.js"></script>
+
+
   </body>
 </html>

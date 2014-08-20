@@ -1,14 +1,27 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<!-- Custom styles for this template -->
+<link href="/static/css/main.css" rel="stylesheet">
 {% extends "base.html" %}
 {% block content %}
       <div class="starter-template">
         <h1>Verba - learn easily!</h1>
         <p class="lead">Verba - means "words" in Latin.<br> Verba can help you to learn unknown and foreign words.<br> Just put your text in box below and check it!</p>
       </div>
-      <form class="form-signin" role="form" action="/process" method="POST">
+      <form role="form" action="/process" method="POST">
         {% csrf_token %}
-        <h2 class="form-signin-heading">Please enter your text</h2>
+        <h3 class="form-signin-heading">Please enter your text</h3>
         <textarea name="text" cols="182" rows="10"></textarea>
-        <button class="btn btn-primary btn-lg" type="submit">Check</button>
+        <br>
+        <button class="btn btn-primary" type="submit">Check</button>
+        <button id="extraBtn" class="btn btn-success" type="button">Extra</button>
+        <div id="extras" >
+            <div><input type="checkbox" name="threeDigits" value="checked"> Check only words over 3 digits long</div>
+            <div><input type="checkbox" name="onlyRoot" value="checked"> Check only roots of the word</div>
+        </div>
       </form>
 {% endblock %}
 

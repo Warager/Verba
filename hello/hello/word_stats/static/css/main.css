@@ -5,3 +5,28 @@ body {
   padding: 40px 15px;
   text-align: center;
 }
+
+#modal-content-sign-in {
+    width: 300px;
+    margin: auto;
+}
+
+.invalidInput {
+    display: none;
+    color: firebrick;
+}
+.invalidUserName {
+    display: none;
+    color: firebrick;
+}
+.invalidPassword {
+    display: none;
+    color: firebrick;
+}
+
+#extras {
+    display: none;
+}
+
+#userOnSite {
+    color: lightskyblue}
