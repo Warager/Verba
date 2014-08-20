@@ -4,14 +4,16 @@
     <list default="true" id="3ac323b5-4b38-47a8-bac9-c41db19cf7cd" name="Default" comment="" />
     <ignored path="hello.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/settings.py" changelist="3ac323b5-4b38-47a8-bac9-c41db19cf7cd" time="1408293092374" ignored="false" />
-    <file path="/views.py" changelist="3ac323b5-4b38-47a8-bac9-c41db19cf7cd" time="1408304731299" ignored="false" />
+    <file path="/settings.py" changelist="3ac323b5-4b38-47a8-bac9-c41db19cf7cd" time="1408450771047" ignored="false" />
+    <file path="/views.py" changelist="3ac323b5-4b38-47a8-bac9-c41db19cf7cd" time="1408541009009" ignored="false" />
     <file path="/index.html" changelist="3ac323b5-4b38-47a8-bac9-c41db19cf7cd" time="1408295839920" ignored="false" />
-    <file path="/urls.py" changelist="3ac323b5-4b38-47a8-bac9-c41db19cf7cd" time="1408298222514" ignored="false" />
+    <file path="/urls.py" changelist="3ac323b5-4b38-47a8-bac9-c41db19cf7cd" time="1408531022722" ignored="false" />
     <file path="/input_from.html" changelist="3ac323b5-4b38-47a8-bac9-c41db19cf7cd" time="1408296406276" ignored="false" />
-    <file path="/input_form.html" changelist="3ac323b5-4b38-47a8-bac9-c41db19cf7cd" time="1408299289097" ignored="false" />
-    <file path="/base.html" changelist="3ac323b5-4b38-47a8-bac9-c41db19cf7cd" time="1408296987702" ignored="false" />
+    <file path="/input_form.html" changelist="3ac323b5-4b38-47a8-bac9-c41db19cf7cd" time="1408548064469" ignored="false" />
+    <file path="/base.html" changelist="3ac323b5-4b38-47a8-bac9-c41db19cf7cd" time="1408544488110" ignored="false" />
     <file path="/analysis.html" changelist="3ac323b5-4b38-47a8-bac9-c41db19cf7cd" time="1408299165839" ignored="false" />
+    <file path="/common.js" changelist="3ac323b5-4b38-47a8-bac9-c41db19cf7cd" time="1408548401062" ignored="false" />
+    <file path="/main.css" changelist="3ac323b5-4b38-47a8-bac9-c41db19cf7cd" time="1408547856234" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +36,7 @@
       <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hello/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="11" selection-start="1018" selection-end="1018" vertical-scroll-proportion="0.0">
+            <state line="42" column="59" selection-start="1116" selection-end="1116" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -43,27 +45,7 @@
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hello/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="368" selection-end="368" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#51#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hello/word_stats/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hello/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="11" column="11" selection-start="401" selection-end="416" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -72,7 +54,7 @@
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hello/word_stats/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="21" selection-start="392" selection-end="392" vertical-scroll-proportion="0.0">
+            <state line="63" column="0" selection-start="1785" selection-end="1785" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -83,17 +65,14 @@
       <file leaf-file-name="analysis.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hello/word_stats/templates/word_stats/analysis.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="12" selection-start="434" selection-end="434" vertical-scroll-proportion="-9.375">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="7" selection-start="663" selection-end="663" vertical-scroll-proportion="0.80306345">
-              <folding />
+            <state line="19" column="12" selection-start="448" selection-end="448" vertical-scroll-proportion="-11.875">
+              <folding>
+                <marker date="1408381253000" expanded="true" signature="80:447" placeholder="..." />
+                <marker date="1408381253000" expanded="true" signature="94:225" placeholder="..." />
+                <marker date="1408381253000" expanded="true" signature="107:210" placeholder="..." />
+                <marker date="1408381253000" expanded="true" signature="239:434" placeholder="..." />
+                <marker date="1408381253000" expanded="true" signature="283:398" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -101,8 +80,28 @@
       <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hello/word_stats/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="0" selection-start="2406" selection-end="2406" vertical-scroll-proportion="-28.125">
+            <state line="21" column="0" selection-start="779" selection-end="779" vertical-scroll-proportion="-11.875">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="common.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hello/word_stats/static/js/common.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="87" column="0" selection-start="2916" selection-end="2916" vertical-scroll-proportion="0.7580645">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="debug_middleware.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hello/debug_middleware.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="0" selection-start="268" selection-end="268" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#16#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -110,7 +109,7 @@
       <file leaf-file-name="input_form.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hello/word_stats/templates/word_stats/input_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="74" selection-start="370" selection-end="370" vertical-scroll-proportion="-3.75">
+            <state line="19" column="19" selection-start="974" selection-end="984" vertical-scroll-proportion="-11.625">
               <folding />
             </state>
           </provider>
@@ -119,7 +118,7 @@
       <file leaf-file-name="main.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hello/word_stats/static/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="1" selection-start="95" selection-end="95" vertical-scroll-proportion="0.0">
+            <state line="28" column="1" selection-start="375" selection-end="375" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -135,16 +134,19 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/hello/settings.py" />
-        <option value="$PROJECT_DIR$/hello/word_stats/static/css/main.css" />
         <option value="$PROJECT_DIR$/hello/word_stats/templates/word_stats/index.html" />
         <option value="$PROJECT_DIR$/hello/word_stats/templates/word_stats/input_from.html" />
-        <option value="$PROJECT_DIR$/hello/word_stats/templates/base.html" />
-        <option value="$PROJECT_DIR$/hello/urls.py" />
         <option value="$PROJECT_DIR$/hello/word_stats/templates/word_stats/analysis.html" />
-        <option value="$PROJECT_DIR$/hello/word_stats/templates/word_stats/input_form.html" />
-        <option value="$PROJECT_DIR$/hello/word_stats/views.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/debug_middleware.py" />
+        <option value="$PROJECT_DIR$/hello/debug_middleware.py" />
+        <option value="$PROJECT_DIR$/hello/settings.py" />
+        <option value="$PROJECT_DIR$/hello/urls.py" />
+        <option value="$PROJECT_DIR$/hello/word_stats/views.py" />
+        <option value="$PROJECT_DIR$/hello/word_stats/templates/base.html" />
+        <option value="$PROJECT_DIR$/hello/word_stats/static/css/main.css" />
+        <option value="$PROJECT_DIR$/hello/word_stats/templates/word_stats/input_form.html" />
+        <option value="$PROJECT_DIR$/hello/word_stats/static/js/common.js" />
       </list>
     </option>
   </component>
@@ -210,98 +212,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hello" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hello" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hello" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="word_stats" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hello" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hello" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hello" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="word_stats" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hello" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hello" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hello" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="word_stats" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="word_stats" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hello" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hello" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hello" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="word_stats" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -312,19 +222,28 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonSdkConfigurable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FullScreen" value="true" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="dynamic.classpath" value="false" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <PyConsoleSettings />
+    </option>
+    <option name="myDjangoConsoleState">
+      <PyConsoleSettings />
+    </option>
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/hello/word_stats/templates/word_stats" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/hello/word_stats/templates" />
       <recent name="$PROJECT_DIR$/hello" />
+      <recent name="$PROJECT_DIR$/hello/word_stats/templates" />
     </key>
   </component>
   <component name="RunManager" selected="Django server.hello">
@@ -411,6 +330,19 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" />
+        <option name="fileUrl" />
+      </JSDebuggerConfigurationSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="com.intellij.persistence.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
+      <option name="VM_PARAMETERS" value="" />
+      <option name="USER_CFG_CLASS" />
+      <option name="CONTEXT_PROVIDER" />
+      <method />
+    </configuration>
     <configuration default="false" name="hello" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -454,22 +386,22 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24554294" sideWeight="0.7236467" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25364667" sideWeight="0.7792023" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27635327" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3988604" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22079772" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
@@ -534,11 +466,30 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hello/word_stats/admin.py">
+    <entry file="file://$PROJECT_DIR$/hello/word_stats/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="68" column="0" selection-start="2399" selection-end="2399" vertical-scroll-proportion="0.0">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hello/word_stats/templates/word_stats/input_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="74" selection-start="378" selection-end="378" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hello/word_stats/static/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="1" selection-start="95" selection-end="95" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hello/word_stats/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hello/word_stats/__init__.py">
@@ -555,39 +506,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hello/word_stats/static/css/main.css">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="1" selection-start="95" selection-end="95" vertical-scroll-proportion="0.0">
+        <state line="18" column="4" selection-start="188" selection-end="188" vertical-scroll-proportion="0.116743475">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hello/settings.py">
+    <entry file="file://$PROJECT_DIR$/hello/word_stats/templates/word_stats/analysis.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="11" selection-start="1018" selection-end="1018" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="19" column="12" selection-start="448" selection-end="448" vertical-scroll-proportion="-11.875">
+          <folding>
+            <marker date="1408381253000" expanded="true" signature="80:447" placeholder="..." />
+            <marker date="1408381253000" expanded="true" signature="94:225" placeholder="..." />
+            <marker date="1408381253000" expanded="true" signature="107:210" placeholder="..." />
+            <marker date="1408381253000" expanded="true" signature="239:434" placeholder="..." />
+            <marker date="1408381253000" expanded="true" signature="283:398" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hello/debug_middleware.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="268" selection-end="268" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hello/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="368" selection-end="368" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hello/word_stats/templates/word_stats/input_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="74" selection-start="370" selection-end="370" vertical-scroll-proportion="-3.75">
+        <state line="11" column="11" selection-start="401" selection-end="416" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hello/word_stats/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="21" selection-start="392" selection-end="392" vertical-scroll-proportion="0.0">
+        <state line="63" column="0" selection-start="1785" selection-end="1785" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
@@ -596,21 +553,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hello/word_stats/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="0" selection-start="2406" selection-end="2406" vertical-scroll-proportion="-28.125">
+        <state line="21" column="0" selection-start="779" selection-end="779" vertical-scroll-proportion="-11.875">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hello/word_stats/templates/word_stats/analysis.html">
+    <entry file="file://$PROJECT_DIR$/hello/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="12" selection-start="434" selection-end="434" vertical-scroll-proportion="-9.375">
+        <state line="42" column="59" selection-start="1116" selection-end="1116" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/hello/word_stats/templates/word_stats/input_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="7" selection-start="663" selection-end="663" vertical-scroll-proportion="0.80306345">
+        <state line="19" column="19" selection-start="974" selection-end="984" vertical-scroll-proportion="-11.625">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hello/word_stats/static/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="1" selection-start="375" selection-end="375" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hello/word_stats/static/js/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="87" column="0" selection-start="2916" selection-end="2916" vertical-scroll-proportion="0.7580645">
           <folding />
         </state>
       </provider>
