@@ -9,8 +9,12 @@ from stemming.porter2 import stem
 import string
 
 # Create your views here.
+from hello.word_stats.models import UserDictionary
+
+
 def input_form(request):
     return render(request, 'word_stats/input_form.html')
+
 
 def process(request):
     text = request.POST['text']
@@ -45,6 +49,7 @@ def process(request):
 
     return render(request, 'word_stats/analysis.html', data)
 
+
 def signup(request):
     my_email = request.POST['login']
     my_password = request.POST['password']
@@ -61,6 +66,7 @@ def signup(request):
     if my_password != my_pass_conf:
         return HttpResponse('Wrong')
     return HttpResponse('Error')
+
 
 def accounts(request):
     my_email = request.POST['login']
@@ -79,6 +85,18 @@ def accounts(request):
 @login_required
 def logout(request):
     auth.logout(request)
-    # pushed = request.POST.get('signOut') == "pushed"
-    # if pushed:
     return redirect('http://127.0.0.1:8000/')
+
+
+def add_word(request):
+    word = request.POST['word']
+    UserDictionary(user=request.user, word=word)
+    # user_dict = UserDictionary.objects.create(user=request.user, word=word)
+    # user_dict.save()
+
+#   The same method
+#    user_dictionary = UserDictionary()
+#    user_dictionary.user = request.user
+#    user_dictionary.save()
+
+    return HttpResponse('OK')

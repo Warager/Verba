@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^accounts/login$', 'hello.word_stats.views.accounts'),
     url(r'^accounts/logout$', 'hello.word_stats.views.logout'),
     url(r'^accounts/signup$', 'hello.word_stats.views.signup'),
+    url(r'^process/add_word$', 'hello.word_stats.views.add_word'),
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),

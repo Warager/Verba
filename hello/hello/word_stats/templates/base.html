@@ -11,15 +11,13 @@
     <title>Verba</title>
 
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-
 
     <!-- Custom styles for this template -->
     <link href="/static/css/main.css" rel="stylesheet">
@@ -55,10 +53,10 @@
              {% if user.is_authenticated %}
                 <span class="glyphicon glyphicon-user"></span>
                 <span class="glyphicon-class">{{ user.email }}</span>
-                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#signOut">Sign out</button>
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#signOut">Sign out</button>
              {% else %}
-                <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#signIn">Sign in</button>
-                <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#signUp">Sign up</button>
+                <button type="submit" class="btn btn-link" data-toggle="modal" data-target="#signIn">Sign in</button>
+                <button type="submit" class="btn btn-default" data-toggle="modal" data-target="#signUp">Sign up</button>
              {% endif %}
           </ul>
         </div><!--/.nav-collapse -->
@@ -104,7 +102,7 @@
         <div id="modal-content-sign-in"  class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="myModalLabel">Please confirm your sign Out</h4>
+            <h4 class="modal-title" id="myModalLabel">Please confirm your Sign out</h4>
           </div>
           <div class="modal-footer">
             <form class="form-signout" role="form" method="post" action="accounts/logout">
@@ -148,25 +146,12 @@
     <div class="modal fade" id="ThankYou" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div id="modal-content-sign-in"  class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header modal-body">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             <h3 class="modal-title" id="myModalLabel">Thank you for registration!</h3>
           </div>
-{#          <div class="modal-body">#}
-{#            <form class="form-signup" role="form">#}
-{#                <input id='myNewEmail' name="myNewEmail" type="email" class="form-control" placeholder="Email address" autofocus="">#}
-{#                <input id='myNewPassword' name="myNewPassword" type="password" class="form-control" placeholder="Password">#}
-{#                <input id='myNewPasswordConfirm' name="myNewPasswordConfirm" type="password" class="form-control" placeholder="Confirm password">#}
-{#                <div class='invalidUserName'>Sorry. This user name is already exist.</div>#}
-{#                <div class='invalidPassword'>Password and confirm does not match!</div>#}
-{#                <div class="checkbox">#}
-{#                  <label>#}
-{#                    <input type="checkbox" value="remember-me"> Remember me#}
-{#                  </label>#}
-{#                </div>#}
-{#                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>#}
-{#            </form>#}
-{#          </div>#}
+          <div class="modal-body">
+          </div>
         </div>
       </div>
     </div>
@@ -174,9 +159,10 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/common.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="/static/js/common.js"></script>
 
 
   </body>

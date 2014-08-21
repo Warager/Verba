@@ -6,14 +6,18 @@
           <th>#</th>
           <th>Word</th>
           <th>Frequency of use in text</th>
+          <th>I know this word!</th>
         </tr>
       </thead>
       <tbody>
         {% for obj in words %}
         <tr>
           <td>{{forloop.counter}}</td>
-          <td>{{ obj.0 }}</td>
+          <td class="wordInTable">{{ obj.0 }}</td>
           <td>{{ obj.1 }}</td>
+          <td>
+              <button type="submit" class="btn btn-default btn-sm addWord">Know it!</button>
+          </td>
         </tr>
         {% endfor %}
       </tbody>

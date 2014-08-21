@@ -6,6 +6,10 @@ body {
   text-align: center;
 }
 
+.table {
+    width: 50%;
+}
+
 #modal-content-sign-in {
     width: 300px;
     margin: auto;
@@ -24,9 +28,20 @@ body {
     color: firebrick;
 }
 
-#extras {
+.extraFeature {
+    display: none;
+}
+#extraHide{
     display: none;
 }
 
 #userOnSite {
     color: lightskyblue}
+.navbar-brand {
+    font-family: 'Lobster', cursive;
+    font-size: 22px;
+}
+.navbar-inverse .navbar-brand {
+color: #6EC;
+}
+

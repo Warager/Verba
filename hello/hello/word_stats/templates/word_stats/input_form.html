@@ -9,7 +9,7 @@
 {% block content %}
       <div class="starter-template">
         <h1>Verba - learn easily!</h1>
-        <p class="lead">Verba - means "words" in Latin.<br> Verba can help you to learn unknown and foreign words.<br> Just put your text in box below and check it!</p>
+        <p class="lead">Verba - means "words" in Latin.<br>Verba can help you to learn unknown and foreign words.<br> Just put your text in box below and check it!</p>
       </div>
       <form role="form" action="/process" method="POST">
         {% csrf_token %}
@@ -17,10 +17,19 @@
         <textarea name="text" cols="182" rows="10"></textarea>
         <br>
         <button class="btn btn-primary" type="submit">Check</button>
-        <button id="extraBtn" class="btn btn-success" type="button">Extra</button>
-        <div id="extras" >
-            <div><input type="checkbox" name="threeDigits" value="checked"> Check only words over 3 digits long</div>
-            <div><input type="checkbox" name="onlyRoot" value="checked"> Check only roots of the word</div>
+        <div class="btn-group" data-toggle="buttons">
+          <label id="extraBtn" class="btn btn-link">
+            <input  type="radio">Extra
+          </label>
+          <label id="extraHide" class="btn btn-link">
+            <input  type="radio">Hide
+          </label>
+          <label class="btn btn-link extraFeature">
+            <input type="checkbox" name="threeDigits" value="checked">3 digits
+          </label>
+          <label class="btn btn-link extraFeature">
+            <input type="checkbox" name="onlyRoot" value="checked">Roots
+          </label>
         </div>
       </form>
 {% endblock %}
