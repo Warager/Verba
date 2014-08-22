@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<table class="table table-striped">
+<table class="table table-striped new-word-table">
       <thead>
         <tr>
           <th>#</th>
@@ -21,5 +21,27 @@
         </tr>
         {% endfor %}
       </tbody>
-    </table>
+</table>
+<table class="table table-striped users-word-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Your known words</th>
+{#          <th>Frequency of use in text</th>#}
+{#          <th>I don't know this word!</th>#}
+        </tr>
+      </thead>
+      <tbody>
+        {% for obj in known_words %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td class="wordInTable">{{ obj }}</td>
+{#          <td>{{ obj.1 }}</td>#}
+{#          <td>#}
+{#              <button type="submit" class="btn btn-default btn-sm addWord">Know it!</button>#}
+{#          </td>#}
+        </tr>
+        {% endfor %}
+      </tbody>
+</table>
 {% endblock %}

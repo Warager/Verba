@@ -17,6 +17,10 @@ def input_form(request):
 
 
 def process(request):
+    """
+    :param request:
+    :return:
+    """
     text = request.POST['text']
 
     threeDigits = request.POST.get('threeDigits') == 'checked'
@@ -32,21 +36,32 @@ def process(request):
 
     cnt = Counter()
 
+    known_words = set()
+    for user_dictionary in UserDictionary.objects.filter(user=request.user):
+        known_words.add(user_dictionary.word)
+    # know_words.add('1')
+    # know_words.add('1')
+    # len(know_words)==1
+    # '1' in  know_words == True
+
     for word in text:
-        if not word:
+        if not word or word == " ":
             continue
         elif threeDigits and len(word) <= 2:
             continue
         elif onlyRoot:
             word = stem(word)
-        cnt[word] += 1
-
+        try:
+            UserDictionary.objects.get(word=word)
+        except UserDictionary.DoesNotExist:
+            cnt[word] += 1
+        # cnt[word] += 1
     a = cnt.items()
     a.sort(key=lambda x: x[1], reverse=True)
     data = {
-        "words": a
+        "words": a,
+        "known_words": known_words
     }
-
     return render(request, 'word_stats/analysis.html', data)
 
 
@@ -55,7 +70,7 @@ def signup(request):
     my_password = request.POST['password']
     my_pass_conf = request.POST['confirm']
     try:
-        user = User.objects.get(email=my_email)
+        User.objects.get(email=my_email)
     except User.DoesNotExist:
         user = User.objects.create_user(username=my_email, email=my_email)
         user.set_password(my_password)
@@ -90,13 +105,26 @@ def logout(request):
 
 def add_word(request):
     word = request.POST['word']
-    UserDictionary(user=request.user, word=word)
-    # user_dict = UserDictionary.objects.create(user=request.user, word=word)
-    # user_dict.save()
+    try:
+        UserDictionary.objects.get(word=word)
+    except UserDictionary.DoesNotExist:
+        user_dictionary = UserDictionary(user=request.user, word=word)
+        user_dictionary.save()
+        return HttpResponse('OK')
+    return HttpResponse('Exist')
+    # try:
+    #     UserDictionary(user=request.user, word=word)
+    # except word.DoesNotExist:
+    #     return HttpResponse('OK')
+    # return HttpResponse('Exist')
+
 
 #   The same method
 #    user_dictionary = UserDictionary()
 #    user_dictionary.user = request.user
 #    user_dictionary.save()
 
-    return HttpResponse('OK')
+#     user_dictionary = UserDictionary(user = request.user)
+#     user_dictionary.save()
+
+

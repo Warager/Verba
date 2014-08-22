@@ -8,7 +8,11 @@ body {
 
 .table {
     width: 50%;
+    display: inline;
 }
+/*.users-word-table {*/
+    /*display: none;*/
+/*}*/
 
 #modal-content-sign-in {
     width: 300px;
