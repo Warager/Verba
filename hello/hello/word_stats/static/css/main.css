@@ -7,12 +7,19 @@ body {
 }
 
 .table {
-    width: 50%;
-    display: inline;
+    width: 45%;
 }
-/*.users-word-table {*/
-    /*display: none;*/
-/*}*/
+.users-word-table {
+    display: none;
+}
+.my-dict-hide {
+    display: none;
+}
+
+.num-of-words {
+    color: firebrick;
+    font-size: 23px;
+}
 
 #modal-content-sign-in {
     width: 300px;

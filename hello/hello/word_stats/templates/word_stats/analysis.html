@@ -1,27 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-<table class="table table-striped new-word-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Word</th>
-          <th>Frequency of use in text</th>
-          <th>I know this word!</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for obj in words %}
-        <tr>
-          <td>{{forloop.counter}}</td>
-          <td class="wordInTable">{{ obj.0 }}</td>
-          <td>{{ obj.1 }}</td>
-          <td>
-              <button type="submit" class="btn btn-default btn-sm addWord">Know it!</button>
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-</table>
+<div class="jumbotron">
+        <h3>Information!</h3>
+        <p>Table below consist of words, that we checked for you. You can add known word into your personal dictionary by pressing "Know it". Next time, when you will check some new text, words from your dictionary will be ignored. Your dictionary now consist of <span class="num-of-words">{{ known_words | length }}</span> words. You can show them by pressing "My dictionary"</p>
+        <p><button class="my-dict-show btn btn-lg btn-primary">My dictionary</button></p>
+        <p><button class="my-dict-hide btn btn-lg btn-default">Hide my dictionary</button></p>
+</div>
 <table class="table table-striped users-word-table">
       <thead>
         <tr>
@@ -44,4 +28,31 @@
         {% endfor %}
       </tbody>
 </table>
+<button class="my-dict-hide btn btn-lg btn-default">Hide my dictionary</button>
+<br class="my-dict-hide">
+<br class="my-dict-hide">
+<br class="my-dict-hide">
+<table class="table table-striped new-word-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Word</th>
+          <th>Frequency of use in text</th>
+          <th>I know this word!</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for obj in words %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td class="wordInTable">{{ obj.0 }}</td>
+          <td>{{ obj.1 }}</td>
+          <td>
+              <button type="submit" class="btn btn-default btn-sm addWord">Know it!</button>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+</table>
+
 {% endblock %}

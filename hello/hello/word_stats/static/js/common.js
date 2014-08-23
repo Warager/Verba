@@ -93,18 +93,35 @@ $(function(){
         $('#extraBtn').show();
         $('#extraHide').hide();
     });
+    $('.my-dict-show').click(function(){
+        $('.users-word-table').show();
+        $('.my-dict-show').hide();
+        $('.my-dict-hide').show();
+    });
+    $('.my-dict-hide').click(function(){
+        $('.users-word-table').hide();
+        $('.my-dict-show').show();
+        $('.my-dict-hide').hide();
+    });
     $('.addWord').click(function(){
         var row = $(this).closest('tr');
+        var newRowWord = row.find('td:nth-child(2)');
+        var newRow = $('.users-word-table tr:last').clone();
+        var newRowNum = newRow.find('td:nth-child(1)');
+        var numOfWords = $('.num-of-words');
         $.ajax({
             url:"process/add_word",
             method: "POST",
             data: {
                 word: $(this).closest('tr').find('.wordInTable').text()
-//                email:$('#myEmail').val()
             },
             success: function(res){
                 if (res == "OK") {
-                    row.remove()
+                    newRow.find('td:nth-child(2)').html(newRowWord.text());
+                    newRow.find('td:nth-child(1)').html(parseInt(newRowNum.text()) + 1);
+                    newRow.appendTo('.users-word-table');
+                    $('.num-of-words').html(parseInt(numOfWords.text()) + 1);
+                    row.remove();
                 }
             },
             error: function(){
