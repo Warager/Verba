@@ -39,10 +39,7 @@ def process(request):
     known_words = set()
     for user_dictionary in UserDictionary.objects.filter(user=request.user):
         known_words.add(user_dictionary.word)
-    # know_words.add('1')
-    # know_words.add('1')
-    # len(know_words)==1
-    # '1' in  know_words == True
+
 
     for word in text:
         if not word or word == " ":
@@ -59,8 +56,8 @@ def process(request):
     a = cnt.items()
     a.sort(key=lambda x: x[1], reverse=True)
     data = {
-        "words": a,
-        "known_words": known_words
+        "words": sorted(a),
+        "known_words": sorted(known_words)
     }
     return render(request, 'word_stats/analysis.html', data)
 
@@ -107,9 +104,13 @@ def add_word(request):
     word = request.POST['word']
     try:
         UserDictionary.objects.get(word=word)
+        # UserDictionary.order_by('word')
     except UserDictionary.DoesNotExist:
         user_dictionary = UserDictionary(user=request.user, word=word)
         user_dictionary.save()
+        # UserDictionary.objects.order_by('word')
+        # ordered_dict.save()
+        # ordered_dict = UserDictionary.order_by('word')
         return HttpResponse('OK')
     return HttpResponse('Exist')
     # try:
@@ -118,6 +119,9 @@ def add_word(request):
     #     return HttpResponse('OK')
     # return HttpResponse('Exist')
 
+def rem_word(request):
+    word_to_rem = request.POST['word']
+    return HttpResponse('OK')
 
 #   The same method
 #    user_dictionary = UserDictionary()

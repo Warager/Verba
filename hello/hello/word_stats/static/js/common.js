@@ -129,6 +129,22 @@ $(function(){
             }
         });
     });
+    $('.remWord').click(function(){
+        var row = $(this).closest('tr');
+        $.ajax({
+            url:"process/rem_word",
+            method: "POST",
+            data: {
+                wordToRem: row.find('.wordInTable').text()
+            },
+            success: function(res){
+                alert(1)
+            },
+            error: function(){
+                alert(2)
+            }
+        });
+    });
 });
 
 
