@@ -138,7 +138,10 @@ $(function(){
                 wordToRem: row.find('.wordInTable').text()
             },
             success: function(res){
-                alert(1)
+                if (res == "OK") {
+                    row.remove();
+                    alert(1)
+                }
             },
             error: function(){
                 alert(2)

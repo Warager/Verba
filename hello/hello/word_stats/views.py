@@ -101,7 +101,7 @@ def logout(request):
 
 
 def add_word(request):
-    word = request.POST['word']
+    word = request.POST.get('word', False)
     try:
         UserDictionary.objects.get(word=word)
         # UserDictionary.order_by('word')
@@ -113,14 +113,15 @@ def add_word(request):
         # ordered_dict = UserDictionary.order_by('word')
         return HttpResponse('OK')
     return HttpResponse('Exist')
-    # try:
-    #     UserDictionary(user=request.user, word=word)
-    # except word.DoesNotExist:
-    #     return HttpResponse('OK')
-    # return HttpResponse('Exist')
+
 
 def rem_word(request):
-    word_to_rem = request.POST['word']
+    word_to_rem = request.POST['wordToRem']
+    UserDictionary.objects.filter(word=word_to_rem).delete()
+    # try:
+    #     UserDictionary.objects.filter(user=request.user, word=word_to_rem).delete()
+    # except UserDictionary.DoesNotExist:
+    #     return HttpResponse('DoesNotExist')
     return HttpResponse('OK')
 
 #   The same method
