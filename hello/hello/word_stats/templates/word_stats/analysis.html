@@ -11,6 +11,7 @@
         <tr>
           <th>#</th>
           <th>Your known words</th>
+          <th>Unknown word</th>
 {#          <th>Frequency of use in text</th>#}
 {#          <th>I don't know this word!</th>#}
         </tr>
@@ -18,7 +19,7 @@
       <tbody>
         {% for obj in known_words %}
         <tr>
-          <td>{{forloop.counter}}</td>
+          <td class="countWords">{{forloop.counter}}</td>
           <td class="wordInTable">{{ obj }}</td>
           <td>
               <button type="submit" class="btn btn-default btn-sm remWord">Unknown word!</button>

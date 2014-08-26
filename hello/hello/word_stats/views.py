@@ -117,11 +117,12 @@ def add_word(request):
 
 def rem_word(request):
     word_to_rem = request.POST['wordToRem']
-    UserDictionary.objects.filter(word=word_to_rem).delete()
-    # try:
-    #     UserDictionary.objects.filter(user=request.user, word=word_to_rem).delete()
-    # except UserDictionary.DoesNotExist:
-    #     return HttpResponse('DoesNotExist')
+    # UserDictionary.objects.filter(word=word_to_rem).delete()
+    try:
+        UserDictionary.objects.filter(word=word_to_rem).delete()
+        # word_delete.save()
+    except UserDictionary.DoesNotExist:
+        return HttpResponse('DoesNotExist')
     return HttpResponse('OK')
 
 #   The same method

@@ -131,6 +131,10 @@ $(function(){
     });
     $('.remWord').click(function(){
         var row = $(this).closest('tr');
+        var numOfWords = $('.num-of-words');
+//        var updRowNum = row.find('td:nth-child(1)');
+        var nextRow = row.next().find('td:nth-child(1)');
+//        var nextRowNum = $(nextRow.html(parseInt(nextRow.text())+1));
         $.ajax({
             url:"process/rem_word",
             method: "POST",
@@ -140,7 +144,8 @@ $(function(){
             success: function(res){
                 if (res == "OK") {
                     row.remove();
-                    alert(1)
+                    $('.num-of-words').html(parseInt(numOfWords.text()) - 1);
+                    $(nextRow.html(parseInt(nextRow.text()-1)));
                 }
             },
             error: function(){
