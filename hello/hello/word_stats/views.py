@@ -29,14 +29,6 @@ def process(request):
     if onlyRoot == 'checked':
         pass
 
-    # no_nums = " "
-    # for w in text:
-    #     if type(int(w)) == int or type(float(w)) == float:
-    #         no_nums += w
-    #     else:
-    #         continue
-    #
-    # text = no_nums
 
     for c in string.punctuation:
         text = text.replace(c, "")
