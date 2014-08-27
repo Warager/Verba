@@ -29,17 +29,32 @@ def process(request):
     if onlyRoot == 'checked':
         pass
 
+    # no_nums = " "
+    # for w in text:
+    #     if type(int(w)) == int or type(float(w)) == float:
+    #         no_nums += w
+    #     else:
+    #         continue
+    #
+    # text = no_nums
+
     for c in string.punctuation:
-        text = text.replace(c, " ")
+        text = text.replace(c, "")
 
     text = text.lower().split(' ')
 
-    cnt = Counter()
+    no_nums = []
+    for w in text:
+        try:
+            type(int(w)) == int
+        except ValueError:
+            no_nums.append(w)
+    text = no_nums
 
+    cnt = Counter()
     known_words = set()
     for user_dictionary in UserDictionary.objects.filter(user=request.user):
         known_words.add(user_dictionary.word)
-
 
     for word in text:
         if not word or word == " ":

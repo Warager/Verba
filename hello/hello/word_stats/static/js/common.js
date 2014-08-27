@@ -128,6 +128,9 @@ $(function(){
                 alert('No OK response')
             }
         });
+//        while (parseInt(numOfWords.text()) == 0 ){
+//                $('.my-dict-show').hide()
+//            }
     });
     $('.remWord').click(function(){
         var row = $(this).closest('tr');
