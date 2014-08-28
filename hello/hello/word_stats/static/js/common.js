@@ -94,6 +94,7 @@ $(function(){
         $('#extraHide').hide();
     });
     $('.my-dict-show').click(function(){
+//        location.reload();
         $('.users-word-table').show();
         $('.my-dict-show').hide();
         $('.my-dict-hide').show();
@@ -109,6 +110,7 @@ $(function(){
         var newRow = $('.users-word-table tr:last').clone();
         var newRowNum = newRow.find('td:nth-child(1)');
         var numOfWords = $('.num-of-words');
+
         $.ajax({
             url:"process/add_word",
             method: "POST",
@@ -122,22 +124,29 @@ $(function(){
                     newRow.appendTo('.users-word-table');
                     $('.num-of-words').html(parseInt(numOfWords.text()) + 1);
                     row.remove();
+//                if (parseInt(numOfWords.text()) > 0 ){
+//                    $('.my-dict-show').show()
+//                    }
                 }
             },
             error: function(){
                 alert('No OK response')
             }
         });
-//        while (parseInt(numOfWords.text()) == 0 ){
-//                $('.my-dict-show').hide()
-//            }
     });
+    if (parseInt($('.num-of-words').text()) == 0 ){
+            $('.my-dict-show').hide()
+        }
+    else {
+        $('.my-dict-show').show()
+    }
     $('.remWord').click(function(){
         var row = $(this).closest('tr');
         var numOfWords = $('.num-of-words');
 //        var updRowNum = row.find('td:nth-child(1)');
-        var nextRow = row.next().find('td:nth-child(1)');
+//        var nextRow = row.next().find('td:nth-child(1)');
 //        var nextRowNum = $(nextRow.html(parseInt(nextRow.text())+1));
+//        row.remove();
         $.ajax({
             url:"process/rem_word",
             method: "POST",
@@ -148,7 +157,7 @@ $(function(){
                 if (res == "OK") {
                     row.remove();
                     $('.num-of-words').html(parseInt(numOfWords.text()) - 1);
-                    $(nextRow.html(parseInt(nextRow.text()-1)));
+//                    $(nextRow.html(parseInt(nextRow.text()-1)));
                 }
             },
             error: function(){

@@ -31,7 +31,7 @@ def process(request):
 
 
     for c in string.punctuation:
-        text = text.replace(c, "")
+        text = text.replace(c, " ")
 
     text = text.lower().split(' ')
 
@@ -49,7 +49,11 @@ def process(request):
         known_words.add(user_dictionary.word)
 
     for word in text:
+        # for s in string.punctuation:
+        #     word = word.replace(s, "")
         if not word or word == " ":
+            continue
+        elif len(word) == 1:
             continue
         elif threeDigits and len(word) <= 2:
             continue
