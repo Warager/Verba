@@ -165,6 +165,11 @@ $(function(){
             }
         });
     });
+    $(".tooltip-cloud").hover(
+        function(){
+            $(this).tooltip("show");
+        }
+    );
 });
 
 
