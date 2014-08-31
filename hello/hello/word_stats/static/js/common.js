@@ -165,9 +165,18 @@ $(function(){
             }
         });
     });
-    $(".tooltip-cloud").hover(
+    $("#3digits-popover").hover(
         function(){
-            $(this).tooltip("show");
+            $(this).popover("show");},
+        function(){
+            $(this).popover("hide");
+        }
+    );
+    $("#onlyRoot-popover").hover(
+        function(){
+            $(this).popover("show");},
+        function(){
+            $(this).popover("hide");
         }
     );
 });

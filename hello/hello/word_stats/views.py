@@ -22,18 +22,16 @@ def process(request):
     :return:
     """
     text = request.POST['text']
-
     threeDigits = request.POST.get('threeDigits') == 'checked'
     onlyRoot = request.POST.get('onlyRoot') == 'checked'
 
-    if onlyRoot == 'checked':
-        pass
+    # if onlyRoot == 'checked':
+    #     pass
 
-
-    for c in string.punctuation:
+    for c in string.punctuation+" ":
         text = text.replace(c, " ")
 
-    text = text.lower().split(' ')
+    text = text.lower().split(" ")
 
     no_nums = []
     for w in text:
@@ -49,8 +47,8 @@ def process(request):
         known_words.add(user_dictionary.word)
 
     for word in text:
-        # for s in string.punctuation:
-        #     word = word.replace(s, "")
+        for s in string.punctuation+" ":
+            word = word.replace(s, " ")
         if not word or word == " ":
             continue
         elif len(word) == 1:
@@ -77,6 +75,7 @@ def signup(request):
     my_email = request.POST['login']
     my_password = request.POST['password']
     my_pass_conf = request.POST['confirm']
+
     try:
         User.objects.get(email=my_email)
     except User.DoesNotExist:
@@ -94,6 +93,7 @@ def signup(request):
 def accounts(request):
     my_email = request.POST['login']
     my_password = request.POST['password']
+
     try:
         user = User.objects.get(email__iexact=my_email, is_active=True)
     except User.DoesNotExist:
