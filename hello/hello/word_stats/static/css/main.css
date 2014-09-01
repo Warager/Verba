@@ -55,4 +55,7 @@ body {
 .navbar-inverse .navbar-brand {
 color: #6EC;
 }
+.sample-row {
+    display: none;
+}
 

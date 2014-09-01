@@ -1,8 +1,9 @@
 {% extends "base.html" %}
+
 {% block content %}
 <div class="jumbotron">
-        <h3>Information!</h3>
-        <p>Table below consist of words, that we checked for you. You can add known word into your personal dictionary by pressing "Know it". Next time, when you will check some new text, words from your dictionary will be ignored. Your dictionary now consist of <span class="num-of-words">{{ known_words | length }}</span> words. You can show them by pressing "My dictionary"</p>
+        <h2>Welcome!</h2>
+        <p> This is your personal dictionary page. There are <span class="num-of-words">{{ known_words | length }}</span> words now. There you can read, add or remove words without checking them in text. To add some words write them in 'New words' field and press 'Add to my dictionary' button. If you want to remove word from table press 'Remove' button near the word.</p>
         <p><button class="my-dict-show btn btn-lg btn-primary">My dictionary</button></p>
         <p><button class="my-dict-hide btn btn-lg btn-default">Hide my dictionary</button></p>
 </div>

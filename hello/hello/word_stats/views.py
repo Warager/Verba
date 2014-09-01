@@ -28,10 +28,15 @@ def process(request):
     # if onlyRoot == 'checked':
     #     pass
 
-    for c in string.punctuation+" ":
-        text = text.replace(c, " ")
+    for c in string.punctuation + " " + "\n":
+        text = text.replace(c, ".")
 
-    text = text.lower().split(" ")
+    print text
+
+    text = text.lower().strip().split(".")
+    text = filter(None, text)
+
+    print text
 
     no_nums = []
     for w in text:
@@ -47,8 +52,9 @@ def process(request):
         known_words.add(user_dictionary.word)
 
     for word in text:
-        for s in string.punctuation+" ":
-            word = word.replace(s, " ")
+        word.strip()
+        # for s in string.punctuation+" ":
+        #     word = word.replace(s, " ")
         if not word or word == " ":
             continue
         elif len(word) == 1:
@@ -136,6 +142,9 @@ def rem_word(request):
         return HttpResponse('DoesNotExist')
     return HttpResponse('OK')
 
+
+def my_dictionary(request):
+    return render(request, "word_stats/my_dictionary.html")
 #   The same method
 #    user_dictionary = UserDictionary()
 #    user_dictionary.user = request.user
