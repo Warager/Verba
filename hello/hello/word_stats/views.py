@@ -31,12 +31,8 @@ def process(request):
     for c in string.punctuation + " " + "\n":
         text = text.replace(c, ".")
 
-    print text
-
     text = text.lower().strip().split(".")
     text = filter(None, text)
-
-    print text
 
     no_nums = []
     for w in text:
@@ -46,11 +42,12 @@ def process(request):
             no_nums.append(w)
     text = no_nums
 
-    cnt = Counter()
     known_words = set()
     for user_dictionary in UserDictionary.objects.filter(user=request.user):
         known_words.add(user_dictionary.word)
 
+    known_in_text = []
+    cnt = Counter()
     for word in text:
         word.strip()
         # for s in string.punctuation+" ":
@@ -65,6 +62,7 @@ def process(request):
             word = stem(word)
         try:
             UserDictionary.objects.get(word=word)
+            known_in_text.append(word)
         except UserDictionary.DoesNotExist:
             cnt[word] += 1
         # cnt[word] += 1
@@ -72,7 +70,8 @@ def process(request):
     a.sort(key=lambda x: x[1], reverse=True)
     data = {
         "words": sorted(a),
-        "known_words": sorted(known_words)
+        "known_words": sorted(known_words),
+        "known_in_text": sorted(known_in_text)
     }
     return render(request, 'word_stats/analysis.html', data)
 
@@ -144,7 +143,50 @@ def rem_word(request):
 
 
 def my_dictionary(request):
-    return render(request, "word_stats/my_dictionary.html")
+
+    known_words = set()
+    for user_dictionary in UserDictionary.objects.filter(user=request.user):
+        known_words.add(user_dictionary.word)
+
+    data = {
+        "known_words": sorted(known_words)
+    }
+    return render(request, "word_stats/my_dictionary.html", data)
+
+
+def my_dict_new_words(request):
+
+    n_words = request.POST.get('words', False)
+
+    for c in string.punctuation + " " + "\n":
+        n_words = n_words.replace(c, ".")
+
+    n_words = n_words.lower().strip().split(".")
+    n_words = filter(None, n_words)
+
+    no_nums = []
+    for w in n_words:
+        try:
+            type(int(w)) == int
+        except ValueError:
+            no_nums.append(w)
+    n_words = no_nums
+
+    for word in n_words:
+        word.strip()
+        if not word or word == " ":
+            continue
+        elif len(word) == 1:
+            continue
+        try:
+            UserDictionary.objects.get(word=word)
+        except UserDictionary.DoesNotExist:
+            user_dictionary = UserDictionary(user=request.user, word=word)
+            user_dictionary.save()
+
+    return my_dictionary(request)
+
+
 #   The same method
 #    user_dictionary = UserDictionary()
 #    user_dictionary.user = request.user

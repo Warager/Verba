@@ -1,73 +1,59 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<!-- Custom styles for this template -->
+<link href="/static/css/main.css" rel="stylesheet">
 {% extends "base.html" %}
-
 {% block content %}
-<div class="jumbotron">
-        <h2>Welcome!</h2>
-        <p> This is your personal dictionary page. There are <span class="num-of-words">{{ known_words | length }}</span> words now. There you can read, add or remove words without checking them in text. To add some words write them in 'New words' field and press 'Add to my dictionary' button. If you want to remove word from table press 'Remove' button near the word.</p>
-        <p><button class="my-dict-show btn btn-lg btn-primary">My dictionary</button></p>
-        <p><button class="my-dict-hide btn btn-lg btn-default">Hide my dictionary</button></p>
-</div>
-<table class="table table-striped users-word-table" data-role="table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Your known words</th>
-          <th>Unknown word</th>
-{#          <th>Frequency of use in text</th>#}
-{#          <th>I don't know this word!</th>#}
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="sample-row">
-          <td class="countWords">0</td>
-          <td class="wordInTable">Word</td>
-          <td>
-              <button type="submit" class="btn btn-default btn-sm remWord">Unknown word!</button>
-          </td>
-        </tr>
-        {% for obj in known_words %}
-        <tr>
-          <td class="countWords">{{forloop.counter}}</td>
-          <td class="wordInTable">{{ obj }}</td>
-          <td>
-              <button type="submit" class="btn btn-default btn-sm remWord">Unknown word!</button>
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-</table>
-<button class="my-dict-hide btn btn-lg btn-default">Hide my dictionary</button>
-<br class="my-dict-hide">
-<br class="my-dict-hide">
-<br class="my-dict-hide">
-<table class="table table-striped new-word-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Word</th>
-          <th>Frequency of use in text</th>
-          <th>I know this word!</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="sample-row">
-          <td class="countNewWords">0</td>
-          <td class="wordInTable">Word</td>
-          <td>
-              <button type="submit" class="btn btn-default btn-sm remWord">New word!</button>
-          </td>
-        </tr>
-        {% for obj in words %}
-        <tr>
-          <td class="countNewWords">{{forloop.counter}}</td>
-          <td class="wordInTable">{{ obj.0 }}</td>
-          <td>{{ obj.1 }}</td>
-          <td>
-              <button type="submit" class="btn btn-default btn-sm addWord">Know it!</button>
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-</table>
-
+    <div class="jumbotron">
+            <h2>Welcome!</h2>
+            <p> This is your personal dictionary page. There are <span class="num-of-words">{{ known_words | length }}</span> words now. There you can read, add or remove words without checking them in text. To add some words write them in 'New words' field and press 'Add words' button. If you want to remove word from table press 'Unknown word' button near the word.</p>
+            <p><button class="my-dict-show btn btn-lg btn-primary">Show my dictionary</button></p>
+            <p><button class="my-dict-hide btn btn-lg btn-default">Hide my dictionary</button></p>
+    </div>
+    <form role="form" action="/my_dict_new_words" method="POST" class="add-word-my-dict">
+        {% csrf_token %}
+        <h3 class="form-signin-heading">Please enter your new words here.</h3>
+        <textarea name="words" cols="100" rows="6"></textarea>
+        <br>
+        <button class="btn btn-primary" type="submit">Add words</button>
+    </form>
+    <br class="my-dict-hide">
+    <br class="my-dict-hide">
+    <br class="my-dict-hide">
+    <table class="table table-striped users-word-table add-word-my-dict" data-role="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Your known words</th>
+              <th>Unknown word</th>
+    {#          <th>Frequency of use in text</th>#}
+    {#          <th>I don't know this word!</th>#}
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="sample-row">
+              <td class="countWords">0</td>
+              <td class="wordInTable">Word</td>
+              <td>
+                  <button type="submit" class="btn btn-default btn-sm remWord">Unknown word!</button>
+              </td>
+            </tr>
+            {% for obj in known_words %}
+            <tr>
+              <td class="countWords">{{forloop.counter}}</td>
+              <td class="wordInTable">{{ obj }}</td>
+              <td>
+                  <button type="submit" class="btn btn-default btn-sm remWord">Unknown word!</button>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+    </table>
+    <button class="my-dict-hide btn btn-lg btn-default">Hide my dictionary</button>
+{#    <br class="my-dict-hide">#}
+{#    <br class="my-dict-hide">#}
+{#    <br class="my-dict-hide">#}
 {% endblock %}

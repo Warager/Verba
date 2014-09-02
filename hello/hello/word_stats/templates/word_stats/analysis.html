@@ -2,9 +2,9 @@
 {% block content %}
 <div class="jumbotron">
         <h3>Information!</h3>
-        <p>Table below consist of words, that we checked for you. You can add known word into your personal dictionary by pressing "Know it". Next time, when you will check some new text, words from your dictionary will be ignored. Your dictionary now consist of <span class="num-of-words">{{ known_words | length }}</span> words. You can show them by pressing "My dictionary"</p>
-        <p><button class="my-dict-show btn btn-lg btn-primary">My dictionary</button></p>
-        <p><button class="my-dict-hide btn btn-lg btn-default">Hide my dictionary</button></p>
+        <p>Table below consist of words, that we checked for you. You can add known word into your personal dictionary by pressing "Know it". Next time, when you will check some new text, words from your dictionary will be ignored. Your know <span class="num-of-words">{{ known_in_text | length }}</span> words in this text. You can show them by pressing "Show known words"</p>
+        <p><button class="my-dict-show btn btn-lg btn-primary">Show known words</button></p>
+        <p><button class="my-dict-hide btn btn-lg btn-default">Hide known words</button></p>
 </div>
 <table class="table table-striped users-word-table" data-role="table">
       <thead>
@@ -24,7 +24,7 @@
               <button type="submit" class="btn btn-default btn-sm remWord">Unknown word!</button>
           </td>
         </tr>
-        {% for obj in known_words %}
+        {% for obj in known_in_text %}
         <tr>
           <td class="countWords">{{forloop.counter}}</td>
           <td class="wordInTable">{{ obj }}</td>
@@ -35,7 +35,7 @@
         {% endfor %}
       </tbody>
 </table>
-<button class="my-dict-hide btn btn-lg btn-default">Hide my dictionary</button>
+<button class="my-dict-hide btn btn-lg btn-default">Hide known words</button>
 <br class="my-dict-hide">
 <br class="my-dict-hide">
 <br class="my-dict-hide">

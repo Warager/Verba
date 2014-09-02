@@ -138,6 +138,19 @@ $(function(){
             }
         });
     });
+//    $('#nav_verba').click(function() {
+//       $('li').removeClass("active");
+//       $(this).addClass("active");
+//    });
+//    $('#nav_home').click(function() {
+//       $('li').removeClass("active");
+//       $(this).addClass("active");
+//    });
+//    $('#nav_my_dict').click(function() {
+//       $('li').removeClass("active");
+//       $(this).addClass("active");
+//    });
+
 //    $('.addWord').click(function(){
 //        var row = $(this).closest('tr');
 //        var newRowWord = row.find('td:nth-child(2)');
