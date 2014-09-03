@@ -133,10 +133,6 @@ $(function(){
             }
         });
     });
-<<<<<<< HEAD
-=======
-
->>>>>>> FETCH_HEAD
     $(document).on('click', '.remWord', function(){
         var row = $(this).closest('tr');
         var numOfWords = $('.num-of-words');
