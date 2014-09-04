@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 
 #PyCharm files
-*.idea
+.idea/
 
 # C extensions
 *.so
