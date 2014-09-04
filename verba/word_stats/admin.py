@@ -1,5 +1,5 @@
 from django.contrib import admin
-from hello.word_stats.models import UserDictionary
+from verba.word_stats.models import UserDictionary
 
 
 class UserDictionaryAdmin(admin.ModelAdmin):

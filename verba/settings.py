@@ -1,5 +1,5 @@
 """
-Django settings for hello project.
+Django settings for verba project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'hello.word_stats',
+    'verba.word_stats',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -46,12 +46,12 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'hello.debug_middleware.ProcessExceptionMiddleware',
+    'verba.debug_middleware.ProcessExceptionMiddleware',
 )
 
-ROOT_URLCONF = 'hello.urls'
+ROOT_URLCONF = 'verba.urls'
 
-WSGI_APPLICATION = 'hello.wsgi.application'
+WSGI_APPLICATION = 'verba.wsgi.application'
 
 
 # Database

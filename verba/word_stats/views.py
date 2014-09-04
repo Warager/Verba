@@ -9,7 +9,7 @@ from stemming.porter2 import stem
 import string
 
 # Create your views here.
-from hello.word_stats.models import UserDictionary
+from verba.word_stats.models import UserDictionary
 
 
 def input_form(request):
