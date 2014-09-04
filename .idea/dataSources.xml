@@ -3,7 +3,7 @@
   <component name="DataSourceManagerImpl" format="xml" hash="842851381">
     <data-source source="LOCAL" name="Django default" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="3386d9d9-9bc4-4902-b209-38b388d4d1a2">
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/verba_db</jdbc-url>
+      <jdbc-url>jdbc:postgresql:$PROJECT_DIR$/db.sqlite3</jdbc-url>
       <user-name>postgres</user-name>
       <user-password>df9bdf98df99df9edf9fdf9c</user-password>
       <libraries>
