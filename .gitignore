@@ -5,6 +5,9 @@ __pycache__/
 #PyCharm files
 .idea/
 
+#Local settings file
+local_settings.py
+
 # C extensions
 *.so
 
