@@ -57,16 +57,13 @@ WSGI_APPLICATION = 'verba.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'verba_db',
-        'USER': 'postgres',
-        'PASSWORD': '123456',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
-}
+DATABASE_URL = 'postgres://postgres:123456@l127.0.0.1:5432/verba_db'
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
+DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
