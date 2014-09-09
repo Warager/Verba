@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 
-#PyCharm files
+#PyCharm files and others
 venv
 *.pyc
 staticfiles
