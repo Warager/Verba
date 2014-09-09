@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 
 #PyCharm files
+venv
+*.pyc
+staticfiles
 .idea/
 
 #Local settings file
