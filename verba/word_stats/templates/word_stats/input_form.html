@@ -17,9 +17,9 @@
         <textarea name="text" cols="182" rows="10"></textarea>
         <br>
         {% if user.is_authenticated %}
-        <button class="btn btn-primary" type="submit" >Check</button>
+        <button class="btn btn-primary" type="submit">Check</button>
         {% else %}
-        <button class="btn btn-primary" type="submit" data-toggle="modal" data-target="#signInOrSignUp">Check</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#signInOrSignUp">Check</button>
         {% endif %}
         <div class="btn-group" data-toggle="buttons">
           <label id="extraBtn" class="btn btn-link">
