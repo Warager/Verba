@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
 from stemming.porter2 import stem
 import string
+import sendgrid
 
 # Create your views here.
 from verba.word_stats.models import UserDictionary
@@ -81,6 +82,8 @@ def signup(request):
     my_password = request.POST['password']
     my_pass_conf = request.POST['confirm']
 
+    sg = sendgrid.SendGridClient('warager', 'cfyahfywbcrj!')
+
     try:
         User.objects.get(email=my_email)
     except User.DoesNotExist:
@@ -89,6 +92,12 @@ def signup(request):
         user.save()
         user.backend = "django.contrib.auth.backends.ModelBackend"
         auth_login(request, user)
+        message = sendgrid.Mail()
+        message.add_to(my_email)
+        message.set_subject('Welcome!')
+        message.set_text("Thank you for registration on my site!")
+        message.set_from('fomin.dritmy@gmail.com')
+        status, msg = sg.send(message)
         return HttpResponse('OK')
     if my_password != my_pass_conf:
         return HttpResponse('Wrong')
