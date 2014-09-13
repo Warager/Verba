@@ -14,7 +14,10 @@ from verba.word_stats.models import UserDictionary
 
 
 def input_form(request):
-    return render(request, 'word_stats/input_form.html')
+    data = {
+        "current_page": 'home'
+    }
+    return render(request, 'word_stats/input_form.html', data)
 
 
 def process(request):
@@ -122,30 +125,24 @@ def accounts(request):
 @login_required
 def logout(request):
     auth.logout(request)
-    return redirect('http://127.0.0.1:8000/')
+    return redirect('/')
 
 
 def add_word(request):
     word = request.POST.get('word', False)
     try:
-        UserDictionary.objects.get(word=word)
-        # UserDictionary.order_by('word')
+        UserDictionary.objects.get(user=request.user, word=word)
     except UserDictionary.DoesNotExist:
         user_dictionary = UserDictionary(user=request.user, word=word)
         user_dictionary.save()
-        # UserDictionary.objects.order_by('word')
-        # ordered_dict.save()
-        # ordered_dict = UserDictionary.order_by('word')
         return HttpResponse('OK')
     return HttpResponse('Exist')
 
 
 def rem_word(request):
     word_to_rem = request.POST['wordToRem']
-    # UserDictionary.objects.filter(word=word_to_rem).delete()
     try:
         UserDictionary.objects.filter(word=word_to_rem).delete()
-        # word_delete.save()
     except UserDictionary.DoesNotExist:
         return HttpResponse('DoesNotExist')
     return HttpResponse('OK')
@@ -158,7 +155,8 @@ def my_dictionary(request):
         known_words.add(user_dictionary.word)
 
     data = {
-        "known_words": sorted(known_words)
+        "known_words": sorted(known_words),
+        "current_page": "my_dictionary"
     }
     return render(request, "word_stats/my_dictionary.html", data)
 
@@ -176,7 +174,7 @@ def my_dict_new_words(request):
     no_nums = []
     for w in n_words:
         try:
-            type(int(w)) == int
+            int(w) == int
         except ValueError:
             no_nums.append(w)
     n_words = no_nums
@@ -188,7 +186,7 @@ def my_dict_new_words(request):
         elif len(word) == 1:
             continue
         try:
-            UserDictionary.objects.get(word=word)
+            UserDictionary.objects.get(user=request.user, word=word)
         except UserDictionary.DoesNotExist:
             user_dictionary = UserDictionary(user=request.user, word=word)
             user_dictionary.save()

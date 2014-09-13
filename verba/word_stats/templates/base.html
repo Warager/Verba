@@ -41,15 +41,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a id="nav_verba" class="navbar-brand" href="http://127.0.0.1:8000">Verba<sup>beta</sup></a>
+          <a class="navbar-brand" href="/">Verba<sup>beta</sup></a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navigation">
-            <li id="nav_home"><a href="http://127.0.0.1:8000/">Home</a></li>
+            <li class="{% if 'home' in current_page %}active{%endif%}"><a href="/" >Home</a></li>
             {% if user.is_authenticated %}
-            <li id="nav_my_dict"><a href="http://127.0.0.1:8000/my_dictionary">My dictionary</a></li>
+            <li class="{% if current_page == 'my_dictionary' %}active{%endif%}"><a href="/my_dictionary">My dictionary</a></li>
             {% else %}
-            <li id="nav_my_dict" style="display: none"><a href="http://127.0.0.1:8000/my_dictionary">My dictionary</a></li>
+            <li style="display: none"><a href="/my_dictionary">My dictionary</a></li>
             {% endif %}
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>

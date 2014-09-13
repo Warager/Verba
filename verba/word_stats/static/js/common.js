@@ -159,12 +159,6 @@ $(function(){
         });
         row.remove();
     });
-    $(function(){
-        var url = window.location.href;
-        $('li.active').removeClass('active');
-        // Will only work if string in href matches with location
-        $('ul.nav a[href="'+ url +'"]').parent().addClass('active');
-    });
     $("#3digits-popover").hover(
         function(){
             $(this).popover("show");},
