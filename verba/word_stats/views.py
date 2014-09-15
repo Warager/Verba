@@ -150,6 +150,36 @@ def rem_word(request):
 
 def my_dictionary(request):
 
+    if request.method == "POST":
+        n_words = request.POST.get('words', False)
+
+        for c in string.punctuation + " " + "\n":
+            n_words = n_words.replace(c, ".")
+
+        n_words = n_words.lower().strip().split(".")
+        n_words = filter(None, n_words)
+
+        no_nums = []
+        for w in n_words:
+            try:
+                int(w) == int
+            except ValueError:
+                no_nums.append(w)
+        n_words = no_nums
+
+        for word in n_words:
+            word.strip()
+            if not word or word == " ":
+                continue
+            elif len(word) == 1:
+                continue
+            try:
+                UserDictionary.objects.get(user=request.user, word=word)
+            except UserDictionary.DoesNotExist:
+                user_dictionary = UserDictionary(user=request.user, word=word)
+                user_dictionary.save()
+        return redirect("/my_dictionary")
+
     known_words = set()
     for user_dictionary in UserDictionary.objects.filter(user=request.user):
         known_words.add(user_dictionary.word)
@@ -161,39 +191,6 @@ def my_dictionary(request):
     return render(request, "word_stats/my_dictionary.html", data)
 
 
-def my_dict_new_words(request):
-
-    n_words = request.POST.get('words', False)
-
-    for c in string.punctuation + " " + "\n":
-        n_words = n_words.replace(c, ".")
-
-    n_words = n_words.lower().strip().split(".")
-    n_words = filter(None, n_words)
-
-    no_nums = []
-    for w in n_words:
-        try:
-            int(w) == int
-        except ValueError:
-            no_nums.append(w)
-    n_words = no_nums
-
-    for word in n_words:
-        word.strip()
-        if not word or word == " ":
-            continue
-        elif len(word) == 1:
-            continue
-        try:
-            UserDictionary.objects.get(user=request.user, word=word)
-        except UserDictionary.DoesNotExist:
-            user_dictionary = UserDictionary(user=request.user, word=word)
-            user_dictionary.save()
-
-    return my_dictionary(request)
-
-
 #   The same method
 #    user_dictionary = UserDictionary()
 #    user_dictionary.user = request.user
@@ -201,5 +198,3 @@ def my_dict_new_words(request):
 
 #     user_dictionary = UserDictionary(user = request.user)
 #     user_dictionary.save()
-
-

@@ -13,7 +13,7 @@
             <p><button class="my-dict-show btn btn-lg btn-primary">Show my dictionary</button></p>
             <p><button class="my-dict-hide btn btn-lg btn-default">Hide my dictionary</button></p>
     </div>
-    <form role="form" action="/my_dict_new_words" method="POST" class="add-word-my-dict">
+    <form role="form" action="/my_dictionary" method="POST" class="add-word-my-dict">
         {% csrf_token %}
         <h3 class="form-signin-heading">Please enter your new words here.</h3>
         <textarea name="words" cols="100" rows="6"></textarea>
