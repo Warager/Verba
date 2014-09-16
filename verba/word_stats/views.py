@@ -25,9 +25,7 @@ def process(request):
     :param request:
     :return:
     """
-    if User.DoesNotExist:
-        return redirect("/")
-    else:
+    if request.user.is_authenticated():
         #This part used to import text and extra check parameters and assign them to variables
         text = request.POST.get('text', "")
         threeDigits = request.POST.get('threeDigits') == 'checked'
@@ -83,6 +81,8 @@ def process(request):
             "known_in_text": sorted(known_in_text)
         }
         return render(request, 'word_stats/analysis.html', data)
+    else:
+            return redirect("/")
 
 
 def signup(request):
@@ -150,9 +150,7 @@ def rem_word(request):
 
 
 def my_dictionary(request):
-    if User.DoesNotExist:
-        return redirect("/")
-    else:
+    if request.user.is_authenticated():
         if request.method == "POST":
             n_words = request.POST.get('words', "")
 
@@ -192,6 +190,8 @@ def my_dictionary(request):
             "current_page": "my_dictionary"
         }
         return render(request, "word_stats/my_dictionary.html", data)
+    else:
+        return redirect("/")
 
 
 #   The same method
