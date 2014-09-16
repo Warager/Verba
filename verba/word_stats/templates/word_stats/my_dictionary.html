@@ -16,8 +16,7 @@
     <form role="form" action="/my_dictionary" method="POST" class="add-word-my-dict">
         {% csrf_token %}
         <h3 class="form-signin-heading">Please enter your new words here.</h3>
-        <textarea name="words" cols="100" rows="6"></textarea>
-        <br>
+        <textarea name="words" cols="150" rows="6"></textarea>
         <button class="btn btn-primary" type="submit">Add words</button>
     </form>
     <br class="my-dict-hide">

@@ -1,9 +1,17 @@
 body {
   padding-top: 50px;
 }
+textarea {
+    margin-bottom: 5px;
+}
 .starter-template {
   padding: 40px 15px;
   text-align: center;
+}
+sup {
+color: #7c76a1;
+position: relative;
+top: -6px;
 }
 
 .table {
@@ -30,10 +38,12 @@ body {
     display: none;
     color: firebrick;
 }
+
 .invalidUserName {
     display: none;
     color: firebrick;
 }
+
 .invalidPassword {
     display: none;
     color: firebrick;
@@ -42,28 +52,28 @@ body {
 .extraFeature {
     display: none;
 }
+
+.navbar-brand {
+    font-family: 'Lobster', cursive;
+    font-size: 22px;
+}
+
+.navbar-inverse .navbar-brand {
+color: #6EC;
+}
+
+.sample-row {
+    display: none;
+}
+
+.add-word-my-dict {
+display: table;
+}
+
 #extraHide{
     display: none;
 }
 
 #userOnSite {
     color: lightskyblue}
-.navbar-brand {
-    font-family: 'Lobster', cursive;
-    font-size: 22px;
-}
-.navbar-inverse .navbar-brand {
-color: #6EC;
-}
-.sample-row {
-    display: none;
-}
 
-.add-word-my-dict {
-
-}
-sup {
-color: #7c76a1;
-position: relative;
-top: -6px;
-}

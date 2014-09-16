@@ -25,19 +25,21 @@ def process(request):
     :param request:
     :return:
     """
-    text = request.POST['text']
+    #This part used to import text and extra check parameters and assign them to variables
+    text = request.POST.get('text', "")
     threeDigits = request.POST.get('threeDigits') == 'checked'
     onlyRoot = request.POST.get('onlyRoot') == 'checked'
 
-    # if onlyRoot == 'checked':
-    #     pass
-
+    # This part of code counts through punctuation symbols finds them in text and replaces if find on .
     for c in string.punctuation + " " + "\n":
         text = text.replace(c, ".")
 
+    # This part of code makes all symbols in text lower case, removes blank lines before and after text and makes
+    # list of words, dividing them by .
     text = text.lower().strip().split(".")
     text = filter(None, text)
 
+    #This part count through the list of words and check if there any digits. Then it makes new list without digits
     no_nums = []
     for w in text:
         try:
@@ -65,13 +67,13 @@ def process(request):
         elif onlyRoot:
             word = stem(word)
         try:
-            UserDictionary.objects.get(word=word)
+            UserDictionary.objects.get(user=request.user, word=word)
             known_in_text.append(word)
         except UserDictionary.DoesNotExist:
             cnt[word] += 1
         # cnt[word] += 1
     a = cnt.items()
-    a.sort(key=lambda x: x[1], reverse=True)
+    # a.sort(key=lambda x: x[1], reverse=True)
     data = {
         "words": sorted(a),
         "known_words": sorted(known_words),
@@ -129,20 +131,16 @@ def logout(request):
 
 
 def add_word(request):
-    word = request.POST.get('word', False)
-    try:
-        UserDictionary.objects.get(user=request.user, word=word)
-    except UserDictionary.DoesNotExist:
-        user_dictionary = UserDictionary(user=request.user, word=word)
-        user_dictionary.save()
-        return HttpResponse('OK')
-    return HttpResponse('Exist')
+    word = request.POST.get('word', "")
+    user_dictionary, _ = UserDictionary.objects.get_or_create(user=request.user, word=word)
+    user_dictionary.save()
+    return HttpResponse('OK')
 
 
 def rem_word(request):
     word_to_rem = request.POST['wordToRem']
     try:
-        UserDictionary.objects.filter(word=word_to_rem).delete()
+        UserDictionary.objects.filter(user=request.user, word=word_to_rem).delete()
     except UserDictionary.DoesNotExist:
         return HttpResponse('DoesNotExist')
     return HttpResponse('OK')

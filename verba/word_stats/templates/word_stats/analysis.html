@@ -62,6 +62,7 @@
           <td class="wordInTable">{{ obj.0 }}</td>
           <td>{{ obj.1 }}</td>
           <td>
+              {% csrf_token %}
               <button type="submit" class="btn btn-default btn-sm addWord">Know it!</button>
           </td>
         </tr>

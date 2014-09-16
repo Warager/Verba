@@ -14,8 +14,7 @@
       <form role="form" action="/process" method="POST">
         {% csrf_token %}
         <h3 class="form-signin-heading">Please enter your text</h3>
-        <textarea name="text" cols="182" rows="10"></textarea>
-        <br>
+        <textarea name="text" cols="170" rows="10"></textarea>
         {% if user.is_authenticated %}
         <button class="btn btn-primary" type="submit">Check</button>
         {% else %}
