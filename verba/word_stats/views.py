@@ -20,11 +20,13 @@ def input_form(request):
     return render(request, 'word_stats/input_form.html', data)
 
 
+#This function makes main computation of words entered by user
 def process(request):
     """
     :param request:
     :return:
     """
+    #All computations will be produces only if user is authenticated
     if request.user.is_authenticated():
         #This part used to import text and extra check parameters and assign them to variables
         text = request.POST.get('text', "")
@@ -57,8 +59,6 @@ def process(request):
         cnt = Counter()
         for word in text:
             word.strip()
-            # for s in string.punctuation+" ":
-            #     word = word.replace(s, " ")
             if not word or word == " ":
                 continue
             elif len(word) == 1:
@@ -72,7 +72,6 @@ def process(request):
                 known_in_text.append(word)
             except UserDictionary.DoesNotExist:
                 cnt[word] += 1
-            # cnt[word] += 1
         a = cnt.items()
         # a.sort(key=lambda x: x[1], reverse=True)
         data = {
@@ -81,15 +80,17 @@ def process(request):
             "known_in_text": sorted(known_in_text)
         }
         return render(request, 'word_stats/analysis.html', data)
+    #If user is not authenticated, access on the /process url will be ignored and it will be redirected on the main page
     else:
             return redirect("/")
 
 
+#This is site register function
 def signup(request):
     my_email = request.POST.get('login', "")
     my_password = request.POST.get('password', "")
     my_pass_conf = request.POST.get('confirm', "")
-
+    #This part of code specify sendgrig client, which sends greetings email after registration
     sg = sendgrid.SendGridClient('warager', 'cfyahfywbcrj!')
 
     try:
@@ -107,12 +108,14 @@ def signup(request):
         message.set_from('fomin.dritmy@gmail.com')
         status, msg = sg.send(message)
         return HttpResponse('OK')
+    #Checking of password confirmation
     if my_password != my_pass_conf:
         return HttpResponse('Wrong')
     return HttpResponse('Error')
 
 
-def accounts(request):
+#This is site login function
+def login(request):
     my_email = request.POST.get('login', "")
     my_password = request.POST.get('password', "")
 
@@ -127,12 +130,14 @@ def accounts(request):
     return HttpResponse('OK')
 
 
+#This function used to logout and redirect on the main page
 @login_required
 def logout(request):
     auth.logout(request)
     return redirect('/')
 
 
+#This function adds word to user's dictionary by click on the button if this word does not exist there
 def add_word(request):
     word = request.POST.get('word', "")
     user_dictionary, _ = UserDictionary.objects.get_or_create(user=request.user, word=word)
@@ -140,6 +145,7 @@ def add_word(request):
     return HttpResponse('OK')
 
 
+#This function removes selected word from the dictionary
 def rem_word(request):
     word_to_rem = request.POST['wordToRem']
     try:
@@ -149,6 +155,7 @@ def rem_word(request):
     return HttpResponse('OK')
 
 
+#This function makes main computation in user's personal dictionary
 def my_dictionary(request):
     if request.user.is_authenticated():
         if request.method == "POST":

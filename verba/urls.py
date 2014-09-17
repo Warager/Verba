@@ -7,7 +7,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'verba.word_stats.views.input_form'),
     url(r'^process$', 'verba.word_stats.views.process'),
-    url(r'^accounts/login$', 'verba.word_stats.views.accounts'),
+    url(r'^accounts/login$', 'verba.word_stats.views.login'),
     url(r'^accounts/logout$', 'verba.word_stats.views.logout'),
     url(r'^accounts/signup$', 'verba.word_stats.views.signup'),
     url(r'^process/add_word$', 'verba.word_stats.views.add_word'),
