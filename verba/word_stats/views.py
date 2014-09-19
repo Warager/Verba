@@ -52,6 +52,7 @@ def process(request):
                 no_nums.append(w)
         text = no_nums
 
+        #Creating list of known words
         known_words = UserDictionary.objects.values_list('word', flat=True)
 
         known_in_text = []
@@ -89,25 +90,35 @@ def signup(request):
     my_password = request.POST.get('password', "")
     my_pass_conf = request.POST.get('confirm', "")
 
-    try:
-        User.objects.get(email=my_email)
-    except User.DoesNotExist:
-        user = User.objects.create_user(username=my_email, email=my_email)
-        user.set_password(my_password)
-        user.save()
-        user.backend = "django.contrib.auth.backends.ModelBackend"
-        auth_login(request, user)
-        message = sendgrid.Mail()
-        message.add_to(my_email)
-        message.set_subject('Welcome!')
-        message.set_text("Thank you for registration on my site!")
-        message.set_from('fomin.dritmy@gmail.com')
-        status, msg = sg.send(message)
-        return HttpResponse('OK')
+    #Checking if user with this name already exists
+    if User.objects.filter(username=my_email).count():
+        return HttpResponse('Error')
+
+    #Checking if email is not empty
+    if my_email == "":
+        return HttpResponse('EmptyUser')
+
+    if my_password == "":
+        return HttpResponse('EmptyPassword')
+
     #Checking of password confirmation
     if my_password != my_pass_conf:
         return HttpResponse('Wrong')
-    return HttpResponse('Error')
+
+    #Creating new user
+    user = User.objects.create_user(username=my_email, email=my_email)
+    user.set_password(my_password)
+    user.save()
+    user.backend = "django.contrib.auth.backends.ModelBackend"
+    auth_login(request, user)
+    #Sending greetings email
+    message = sendgrid.Mail()
+    message.add_to(my_email)
+    message.set_subject('Welcome!')
+    message.set_text("Thank you for registration on my site!")
+    message.set_from('fomin.dritmy@gmail.com')
+    status, msg = sg.send(message)
+    return HttpResponse('OK')
 
 
 #This is site login function
@@ -115,10 +126,12 @@ def login(request):
     my_email = request.POST.get('login', "")
     my_password = request.POST.get('password', "")
 
+    #Checking if user is exist
     try:
         user = User.objects.get(email__iexact=my_email, is_active=True)
     except User.DoesNotExist:
         return HttpResponse('Error')
+    #Checking of user password
     if not user.check_password(my_password):
         return HttpResponse('Error')
     user.backend = "django.contrib.auth.backends.ModelBackend"
@@ -154,34 +167,30 @@ def rem_word(request):
 def my_dictionary(request):
     if request.user.is_authenticated():
         if request.method == "POST":
-            n_words = request.POST.get('words', "")
+            new_words = request.POST.get('words', "")
 
             for c in string.punctuation + " " + "\n":
-                n_words = n_words.replace(c, ".")
+                new_words = new_words.replace(c, ".")
 
-            n_words = n_words.lower().strip().split(".")
-            n_words = filter(None, n_words)
+            new_words = new_words.lower().strip().split(".")
+            new_words = filter(None, new_words)
 
             no_nums = []
-            for word in n_words:
+            for word in new_words:
                 try:
                     int(word)
                 except ValueError:
                     continue
                 no_nums.append(word)
-            n_words = no_nums
+            new_words = no_nums
 
-            for word in n_words:
+            for word in new_words:
                 word.strip()
                 if not word or word == " ":
                     continue
                 elif len(word) == 1:
                     continue
-                try:
-                    UserDictionary.objects.get(user=request.user, word=word)
-                except UserDictionary.DoesNotExist:
-                    user_dictionary = UserDictionary(user=request.user, word=word)
-                    user_dictionary.save()
+                user_dictionary, _ = UserDictionary.objects.get_or_create(user=request.user, word=word)
             return redirect("/my_dictionary")
 
         known_words = set()
@@ -193,6 +202,7 @@ def my_dictionary(request):
             "current_page": "my_dictionary"
         }
         return render(request, "word_stats/my_dictionary.html", data)
+    #If user is not authenticated, access on the /my_dictionary url will be ignored and redirected on the main page
     else:
         return redirect("/")
 
@@ -213,3 +223,25 @@ def my_dictionary(request):
 
 #This part of code specify sendgrig client, which sends greetings email after registration
 # sg = sendgrid.SendGridClient('warager', 'cfyahfywbcrj!')
+
+
+# try:
+#     User.objects.get(email=my_email)
+# except User.DoesNotExist:
+#
+#     user = User.objects.create_user(username=my_email, email=my_email)
+#     user.set_password(my_password)
+#     user.save()
+#     user.backend = "django.contrib.auth.backends.ModelBackend"
+#     auth_login(request, user)
+#     message = sendgrid.Mail()
+#     message.add_to(my_email)
+#     message.set_subject('Welcome!')
+#     message.set_text("Thank you for registration on my site!")
+#     message.set_from('fomin.dritmy@gmail.com')
+#     status, msg = sg.send(message)
+#     return HttpResponse('OK')
+# #Checking of password confirmation
+# if my_password != my_pass_conf:
+#     return HttpResponse('Wrong')
+# return HttpResponse('Error')

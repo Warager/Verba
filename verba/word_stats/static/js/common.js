@@ -63,6 +63,12 @@ $(function(){
                 else if((res) == "Wrong") {
                     $(".invalidPassword").show()
                 }
+                else if((res) == "EmptyUser") {
+                    $(".emptyUserName").show()
+                }
+                else if((res) == "EmptyPassword") {
+                    $(".emptyPassword").show()
+                }
                 else {
                     $(".invalidUserName").show()
                 }
@@ -77,6 +83,8 @@ $(function(){
       $(".invalidInput").hide();
       $(".invalidPassword").hide();
       $(".invalidUserName").hide();
+      $(".emptyUserName").hide();
+      $(".emptyPassword").hide();
     });
     $('.form-signin').click(function(){
       $(".invalidInput").hide();

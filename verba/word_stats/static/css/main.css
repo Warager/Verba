@@ -49,6 +49,15 @@ top: -6px;
     color: firebrick;
 }
 
+.emptyUserName {
+    display: none;
+    color: firebrick;
+}
+.emptyPassword {
+    display: none;
+    color: firebrick;
+}
+
 .extraFeature {
     display: none;
 }
