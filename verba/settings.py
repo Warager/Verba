@@ -91,6 +91,6 @@ except ImportError:
     pass
 DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
 
-sg = sendgrid.SendGridClient('warager', 'cfyahfywbcrj!')
+sg = sendgrid.SendGridClient('warager', 'cfyahfy!')
 
 # local settings config DATABASE_URL = 'postgres://postgres:123456@127.0.0.1:5432/verba_db'
