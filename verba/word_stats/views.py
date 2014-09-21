@@ -53,7 +53,7 @@ def process(request):
         text = no_nums
 
         #Creating list of known words
-        known_words = UserDictionary.objects.values_list('word', flat=True)
+        known_words = UserDictionary.objects.values_list('word', flat=True).filter(user=request.user)
 
         known_in_text = []
         cnt = Counter()
@@ -61,18 +61,19 @@ def process(request):
             word.strip()
             if not word or word == " ":
                 continue
-            if len(word) == 1:
+            elif len(word) == 1:
                 continue
-            if threeDigits and len(word) <= 2:
+            elif threeDigits and len(word) <= 2:
                 continue
-            if onlyRoot:
+            elif onlyRoot:
                 word = stem(word)
-            if word not in known_words:
+            elif word not in known_words:
                 cnt[word] += 1
             if word in known_in_text:
                 continue
             if word in known_words:
                 known_in_text.append(word)
+
         data = {
             "words": sorted(cnt.items()),
             "known_words": sorted(known_words),
