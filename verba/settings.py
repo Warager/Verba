@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import dj_database_url
+import sendgrid
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -90,6 +91,6 @@ except ImportError:
     pass
 DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
 
-
+sg = sendgrid.SendGridClient('warager', 'cfyahfywbcrj!')
 
 # local settings config DATABASE_URL = 'postgres://postgres:123456@127.0.0.1:5432/verba_db'

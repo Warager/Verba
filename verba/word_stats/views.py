@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
 from django.template.loader import render_to_string
 from stemming.porter2 import stem
-from verba.local_settings import sg
+from verba.settings import sg
 import string
 import sendgrid
 
