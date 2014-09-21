@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
+from django.template.loader import render_to_string
 from stemming.porter2 import stem
 from verba.settings import sg
 import string
@@ -116,7 +117,7 @@ def signup(request):
     message = sendgrid.Mail()
     message.add_to(my_email)
     message.set_subject('Welcome!')
-    message.set_text("Thank you for registration on my site!")
+    message.set_html(render_to_string('word_stats/welcome_email.html'))
     message.set_from('fomin.dritmy@gmail.com')
     status, msg = sg.send(message)
     return HttpResponse('OK')
