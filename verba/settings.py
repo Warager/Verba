@@ -60,7 +60,7 @@ WSGI_APPLICATION = 'verba.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 
-DATABASE_URL = 'postgres://postgres:123456@l127.0.0.1:5432/verba_db'
+DATABASE_URL = 'sqlite:////{}/db.sqlite'.format(BASE_DIR)
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
