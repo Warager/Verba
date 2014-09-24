@@ -22,58 +22,78 @@ def input_form(request):
     return render(request, 'word_stats/input_form.html', data)
 
 
-#This function makes main computation of words entered by user
+def text_to_words(text):
+    """
+    Converts text to list of words, no digits, no punctuation, lover case
+    :param text:
+    :return:
+    """
+    for c in string.punctuation + " " + "\n":
+        text = text.replace(c, ".")
+
+    text = text.lower().strip().split(".")
+    text = filter(None, text)
+
+    no_digits = []
+    for w in text:
+        try:
+            int(w)
+        except ValueError:
+            no_digits.append(w)
+    text = no_digits
+    return text
+
+
+def words_analysis(words_list, threeLetters, onlyBase, known_words):
+    """
+    Analyzes words in list. Sorts them by input criteria. Counts frequency of new words in text
+    :param words_list:
+    :param threeLetters:
+    :param onlyBase:
+    :param known_words:
+    :return:
+    """
+    known_in_text = []
+    cnt = Counter()
+    for word in words_list:
+        word.strip()
+        if not word or word == " ":
+            continue
+        elif len(word) == 1:
+            continue
+        elif threeLetters and len(word) <= 2:
+            continue
+        elif onlyBase:
+            word = stem(word)
+        elif word not in known_words:
+            cnt[word] += 1
+        if word in known_in_text:
+            continue
+        if word in known_words:
+            known_in_text.append(word)
+    return known_in_text, cnt
+
+
 def process(request):
     """
+    Main computation of words entered by user
     :param request:
     :return:
     """
     #All computations will be produces only if user is authenticated
     if request.user.is_authenticated():
-        #This part used to import text and extra check parameters and assign them to variables
         text = request.POST.get('text', "")
-        threeDigits = request.POST.get('threeDigits') == 'checked'
-        onlyRoot = request.POST.get('onlyRoot') == 'checked'
+        threeLetters = request.POST.get('threeLetters') == 'checked'
+        onlyBase = request.POST.get('onlyBase') == 'checked'
 
-        # This part of code counts through punctuation symbols finds them in text and replaces if find on .
-        for c in string.punctuation + " " + "\n":
-            text = text.replace(c, ".")
+        if request.user.is_authenticated:
+            known_words = UserDictionary.objects.values_list('word', flat=True).filter(user=request.user)
+        else:
+            known_words = []
 
-        # This part of code makes all symbols in text lower case, removes blank lines before and after text and makes
-        # list of words, dividing them by .
-        text = text.lower().strip().split(".")
-        text = filter(None, text)
-
-        #This part count through the list of words and check if there any digits. Then it makes new list without digits
-        no_nums = []
-        for w in text:
-            try:
-                type(int(w)) == int
-            except ValueError:
-                no_nums.append(w)
-        text = no_nums
-
-        #Creating list of known words
-        known_words = UserDictionary.objects.values_list('word', flat=True).filter(user=request.user)
-
-        known_in_text = []
-        cnt = Counter()
-        for word in text:
-            word.strip()
-            if not word or word == " ":
-                continue
-            elif len(word) == 1:
-                continue
-            elif threeDigits and len(word) <= 2:
-                continue
-            elif onlyRoot:
-                word = stem(word)
-            elif word not in known_words:
-                cnt[word] += 1
-            if word in known_in_text:
-                continue
-            if word in known_words:
-                known_in_text.append(word)
+        words_list = text_to_words(text)
+        _, cnt = words_analysis(words_list, threeLetters, onlyBase, known_words)
+        known_in_text, _ = words_analysis(words_list, threeLetters, onlyBase, known_words)
 
         data = {
             "words": sorted(cnt.items()),
@@ -171,20 +191,7 @@ def my_dictionary(request):
         if request.method == "POST":
             new_words = request.POST.get('words', "")
 
-            for c in string.punctuation + " " + "\n":
-                new_words = new_words.replace(c, ".")
-
-            new_words = new_words.lower().strip().split(".")
-            new_words = filter(None, new_words)
-
-            no_nums = []
-            for word in new_words:
-                try:
-                    int(word)
-                except ValueError:
-                    continue
-                no_nums.append(word)
-            new_words = no_nums
+            new_words = text_to_words(new_words)
 
             for word in new_words:
                 word.strip()
@@ -207,43 +214,3 @@ def my_dictionary(request):
     #If user is not authenticated, access on the /my_dictionary url will be ignored and redirected on the main page
     else:
         return redirect("/")
-
-
-#   The same method
-#    user_dictionary = UserDictionary()
-#    user_dictionary.user = request.user
-#    user_dictionary.save()
-
-#     user_dictionary = UserDictionary(user = request.user)
-#     user_dictionary.save()
-
-# try:
-#     UserDictionary.objects.get(user=request.user, word=word)
-#     known_in_text.append(word)
-# except UserDictionary.DoesNotExist:
-#     cnt[word] += 1
-
-#This part of code specify sendgrig client, which sends greetings email after registration
-# sg = sendgrid.SendGridClient('warager', 'cfyahfywbcrj!')
-
-
-# try:
-#     User.objects.get(email=my_email)
-# except User.DoesNotExist:
-#
-#     user = User.objects.create_user(username=my_email, email=my_email)
-#     user.set_password(my_password)
-#     user.save()
-#     user.backend = "django.contrib.auth.backends.ModelBackend"
-#     auth_login(request, user)
-#     message = sendgrid.Mail()
-#     message.add_to(my_email)
-#     message.set_subject('Welcome!')
-#     message.set_text("Thank you for registration on my site!")
-#     message.set_from('fomin.dritmy@gmail.com')
-#     status, msg = sg.send(message)
-#     return HttpResponse('OK')
-# #Checking of password confirmation
-# if my_password != my_pass_conf:
-#     return HttpResponse('Wrong')
-# return HttpResponse('Error')
