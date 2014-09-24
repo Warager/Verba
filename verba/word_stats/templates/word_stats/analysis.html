@@ -63,7 +63,11 @@
           <td>{{ obj.1 }}</td>
           <td>
               {% csrf_token %}
+              {% if user.is_authenticated %}
               <button type="submit" class="btn btn-default btn-sm addWord">Know it!</button>
+              {% else %}
+              <button type="submit" class="btn btn-default btn-sm" data-toggle="modal" data-target="#signInOrSignUp">Know it!</button>
+              {% endif %}
           </td>
         </tr>
         {% endfor %}
