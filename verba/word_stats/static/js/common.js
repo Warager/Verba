@@ -23,6 +23,9 @@ $(function () {
       }
     }
   });
+  function ajaxError() {
+      alert('Ooops! Something get wrong!')
+  }
   $(".form-signin").submit(function () {
     $.ajax({
       url: "/accounts/login",
@@ -39,9 +42,7 @@ $(function () {
           $(".invalidInput").show()
         }
       },
-      error: function () {
-        alert("Ooops! Something get wrong!")
-      }
+      error: ajaxError()
     });
     return false;
   });
@@ -75,9 +76,7 @@ $(function () {
           $(".invalidUserName").show()
         }
       },
-      error: function () {
-        alert("Ooops!")
-      }
+      error: ajaxError()
     });
     return false
   });
@@ -138,9 +137,7 @@ $(function () {
           });
         }
       },
-      error: function () {
-        alert('No OK response')
-      }
+      error: ajaxError()
     });
   });
   $(document).on('click', '.remWord', function () {
@@ -163,13 +160,11 @@ $(function () {
           alert("Word Does Not Exist!")
         }
       },
-      error: function () {
-        alert(2)
-      }
+      error: ajaxError()
     });
     row.remove();
   });
-  $("#3digits-popover").hover(
+  $("#3letters-popover").hover(
       function () {
         $(this).popover("show");
       },
@@ -177,7 +172,7 @@ $(function () {
         $(this).popover("hide");
       }
   );
-  $("#onlyRoot-popover").hover(
+  $("#onlyBase-popover").hover(
       function () {
         $(this).popover("show");
       },

@@ -4,10 +4,8 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
-from django.template.loader import render_to_string
-from verba.settings import sg
-from verba.word_stats.utils import text_to_words, words_analysis
-import sendgrid
+from verba.word_stats.utils import text_to_words, words_analysis, send_email
+from annoying.decorators import ajax_request
 
 
 from verba.word_stats.models import UserDictionary
@@ -74,20 +72,13 @@ def signup(request):
     if my_password != my_pass_conf:
         return HttpResponse('Wrong')
 
-    #Creating new user
     user = User.objects.create_user(username=my_email, email=my_email)
     user.set_password(my_password)
     user.set_first_name(my_name)
     user.save()
     user.backend = "django.contrib.auth.backends.ModelBackend"
     auth_login(request, user)
-    #Sending greetings email
-    message = sendgrid.Mail()
-    message.add_to(my_email)
-    message.set_subject('Welcome!')
-    message.set_html(render_to_string('word_stats/welcome_email.html', {'user': user}))
-    message.set_from('fomin.dritmy@gmail.com')
-    status, msg = sg.send(message)
+    send_email(user, my_email)
     return HttpResponse('OK')
 
 
@@ -151,9 +142,13 @@ def rem_word(request):
     return HttpResponse('OK')
 
 
-#This function makes main computation in user's personal dictionary
+@ajax_request
 def my_dictionary(request):
-
+    """
+    Main computation in user's dictionary
+    :param request:
+    :return:
+    """
     if not request.user.is_authenticated():
         return redirect("/")
 

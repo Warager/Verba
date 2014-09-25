@@ -1,6 +1,9 @@
 import string
+from django.template.loader import render_to_string
+from sendgrid import sendgrid
 from stemming.porter2 import stem
 from collections import Counter
+from verba.settings import sg
 
 
 def text_to_words(text):
@@ -44,7 +47,7 @@ def words_analysis(words_list, threeLetters, onlyBase, known_words):
             continue
         elif threeLetters and len(word) <= 2:
             continue
-        elif onlyBase:
+        elif onlyBase == 'checked':
             word = stem(word)
         elif word not in known_words:
             cnt[word] += 1
@@ -55,3 +58,16 @@ def words_analysis(words_list, threeLetters, onlyBase, known_words):
     return known_in_text, cnt
 
 
+def send_email(user, my_email):
+    """
+    Sends welcome message on user's email
+    :param user:
+    :param my_email:
+    :return:
+    """
+    message = sendgrid.Mail()
+    message.add_to(my_email)
+    message.set_subject('Welcome!')
+    message.set_html(render_to_string('word_stats/welcome_email.html', {'user': user}))
+    message.set_from('fomin.dritmy@gmail.com')
+    status, msg = sg.send(message)
