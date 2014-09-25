@@ -6,7 +6,6 @@ import datetime
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('word_stats', '0001_initial'),
     ]
@@ -15,7 +14,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='userdictionary',
             name='created',
-            field=models.DateTimeField(default=datetime.date(2014, 9, 21), auto_now_add=True),
+            field=models.DateTimeField(default=datetime.date(2014, 9, 21),
+                                       auto_now_add=True),
             preserve_default=False,
         ),
     ]

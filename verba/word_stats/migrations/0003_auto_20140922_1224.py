@@ -5,7 +5,6 @@ from django.db import models, migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('word_stats', '0002_userdictionary_created'),
     ]
@@ -14,6 +13,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='userdictionary',
             name='created',
-            field=models.DateTimeField(auto_now_add=True, verbose_name=b'created'),
+            field=models.DateTimeField(auto_now_add=True,
+                                       verbose_name=b'created'),
         ),
     ]

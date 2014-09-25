@@ -7,15 +7,12 @@ from django.contrib.auth import login as auth_login
 from verba.word_stats.utils import text_to_words, words_analysis, send_email
 from annoying.decorators import ajax_request
 
-
 from verba.word_stats.models import UserDictionary
 
 
 def input_form(request):
     """
     Renders start page
-    :param request:
-    :return:
     """
     data = {
         "current_page": 'home'
@@ -26,8 +23,6 @@ def input_form(request):
 def process(request):
     """
     Main computation of words entered by user
-    :param request:
-    :return:
     """
     if request.method != "POST":
         return redirect("/")
@@ -36,13 +31,16 @@ def process(request):
     onlyBase = request.POST.get('onlyBase') == 'checked'
 
     try:
-        known_words = UserDictionary.objects.values_list('word', flat=True).filter(user=request.user)
+        known_words = UserDictionary.objects.values_list(
+            'word', flat=True).filter(user=request.user)
+
     except TypeError:
         known_words = []
 
     words_list = text_to_words(text)
     _, cnt = words_analysis(words_list, threeLetters, onlyBase, known_words)
-    known_in_text, _ = words_analysis(words_list, threeLetters, onlyBase, known_words)
+    known_in_text, _ = words_analysis(words_list, threeLetters, onlyBase,
+                                      known_words)
 
     data = {
         "words": sorted(cnt.items()),
@@ -55,8 +53,6 @@ def process(request):
 def signup(request):
     """
     Site registration function
-    :param request:
-    :return:
     """
     my_email = request.POST.get('login', "")
     my_name = request.POST.get('name', 'Stranger')
@@ -85,18 +81,15 @@ def signup(request):
 def login(request):
     """
     Site log in function
-    :param request:
-    :return:
     """
     my_email = request.POST.get('login', "")
     my_password = request.POST.get('password', "")
 
-    #Checking if user is exist
     try:
         user = User.objects.get(email__iexact=my_email, is_active=True)
     except User.DoesNotExist:
         return HttpResponse('Error')
-    #Checking of user password
+
     if not user.check_password(my_password):
         return HttpResponse('Error')
     user.backend = "django.contrib.auth.backends.ModelBackend"
@@ -108,46 +101,40 @@ def login(request):
 def logout(request):
     """
     Site logout function
-    :param request:
-    :return:
     """
     auth.logout(request)
     return redirect('/')
 
-
+@ajax_request
 def add_word(request):
     """
     Adds words to the user's personal dictionary
-    :param request:
-    :return:
     """
     word = request.POST.get('word', "")
     if word == "":
-        return HttpResponse('Error')
-    user_dictionary, _ = UserDictionary.objects.get_or_create(user=request.user, word=word)
-    return HttpResponse('OK')
+        return {'success': False}
+    user_dictionary, _ = UserDictionary.objects.get_or_create(
+        user=request.user,
+        word=word)
+    return {'success': True}
 
 
 def rem_word(request):
     """
     Remover words from user's personal dictionary
-    :param request:
-    :return:
     """
     word_to_rem = request.POST['wordToRem']
     try:
-        UserDictionary.objects.filter(user=request.user, word=word_to_rem).delete()
+        UserDictionary.objects.filter(user=request.user,
+                                      word=word_to_rem).delete()
     except UserDictionary.DoesNotExist:
         return HttpResponse('DoesNotExist')
     return HttpResponse('OK')
 
 
-@ajax_request
 def my_dictionary(request):
     """
     Main computation in user's dictionary
-    :param request:
-    :return:
     """
     if not request.user.is_authenticated():
         return redirect("/")
@@ -162,7 +149,9 @@ def my_dictionary(request):
                 continue
             elif len(word) == 1:
                 continue
-            user_dictionary, _ = UserDictionary.objects.get_or_create(user=request.user, word=word)
+            user_dictionary, _ = UserDictionary.objects.get_or_create(
+                user=request.user,
+                word=word)
         return redirect("/my_dictionary")
 
     known_words = set()

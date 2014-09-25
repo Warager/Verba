@@ -24,8 +24,9 @@ $(function () {
     }
   });
   function ajaxError() {
-      alert('Ooops! Something get wrong!')
+    alert('Ooops! Something get wrong!')
   }
+
   $(".form-signin").submit(function () {
     $.ajax({
       url: "/accounts/login",

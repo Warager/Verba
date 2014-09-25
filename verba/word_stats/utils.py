@@ -30,7 +30,8 @@ def text_to_words(text):
 
 def words_analysis(words_list, threeLetters, onlyBase, known_words):
     """
-    Analyzes words in list. Sorts them by input criteria. Counts frequency of new words in text
+    Analyzes words in list. Sorts them by input criteria. Counts frequency
+    of new words in text
     :param words_list:
     :param threeLetters:
     :param onlyBase:
@@ -68,6 +69,7 @@ def send_email(user, my_email):
     message = sendgrid.Mail()
     message.add_to(my_email)
     message.set_subject('Welcome!')
-    message.set_html(render_to_string('word_stats/welcome_email.html', {'user': user}))
+    message.set_html(
+        render_to_string('word_stats/welcome_email.html', {'user': user}))
     message.set_from('fomin.dritmy@gmail.com')
     status, msg = sg.send(message)
