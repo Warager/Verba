@@ -26,7 +26,6 @@ $(function () {
     function ajaxError() {
     alert('Ooops! Something get wrong!')
   }
-//
   $(".form-signin").submit(function () {
     $.ajax({
       url: "/accounts/login",
@@ -93,8 +92,6 @@ $(function () {
     $(".invalidPassword").hide();
     $(".invalidUserName").hide();
   });
-//
-//
   $('#extraBtn').click(function () {
     $('.extraFeature').show();
     $('#extraBtn').hide();
@@ -105,8 +102,6 @@ $(function () {
     $('#extraBtn').show();
     $('#extraHide').hide();
   });
-//
-//
   $('.my-dict-show').click(function () {
     $('.users-word-table').show();
     $('.my-dict-show').hide();
@@ -117,7 +112,6 @@ $(function () {
     $('.my-dict-show').show();
     $('.my-dict-hide').hide();
   });
-//
   $(document).on('click', '.addWord', function () {
     var row = $(this).closest('tr');
     var newRowWord = row.find('td:nth-child(2)');
@@ -170,7 +164,6 @@ $(function () {
     });
     row.remove();
   });
-//
   $("#3letters-popover").hover(
       function () {
         $(this).popover("show");
@@ -188,5 +181,5 @@ $(function () {
       }
   );
 });
-//
+
 

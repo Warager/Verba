@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="starter-template">
+    <h1>Verba - learn easily!</h1>
+
+    <p class="lead">Verba - means "words" in Latin.<br>Verba can help you to
+      learn unknown and foreign words.<br>
+      Just put your text in box below and check it!</p>
+  </div>
+  <form role="form" action="/process" method="POST">
+    {% csrf_token %}
+    <h3 class="form-signin-heading">Please enter your text</h3>
+    <textarea name="text" cols="170" rows="10"></textarea>
+    <br>
+    {#        {% if user.is_authenticated %}#}
+    <button class="btn btn-primary" type="submit">Check</button>
+    {#        {% else %}#}
+    {#        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#signInOrSignUp">Check</button>#}
+    {#        {% endif %}#}
+    <div class="btn-group" data-toggle="buttons">
+      <label id="extraBtn" class="btn btn-link">
+        <input type="radio">Extra
+      </label>
+      <label id="extraHide" class="btn btn-link">
+        <input type="radio">Hide
+      </label>
+      <label id="3letters-popover" class="btn btn-link extraFeature"
+             data-container="body" data-toggle="popover"
+             data-placement="top"
+             data-content="This extra option ignores words of less than three letters.">
+        <input type="checkbox" name="threeLetters" value="checked">3 letters
+      </label>
+      <label id="onlyBase-popover" class="btn btn-link extraFeature"
+             data-container="body" data-toggle="popover"
+             data-placement="top"
+             data-content="This extra option returns only base of word without suffixes and prefixes.">
+        <input type="checkbox" name="onlyBase" value="checked">Base
+      </label>
+    </div>
+  </form>
+{% endblock %}
+
+

@@ -1,11 +1,11 @@
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
 from verba.word_stats.utils import text_to_words, words_analysis, send_email
-from annoying.decorators import ajax_request
+# from annoying.decorators import ajax_request
 
 from verba.word_stats.models import UserDictionary
 
@@ -105,18 +105,18 @@ def logout(request):
     auth.logout(request)
     return redirect('/')
 
-@ajax_request
+
 def add_word(request):
     """
     Adds words to the user's personal dictionary
     """
     word = request.POST.get('word', "")
     if word == "":
-        return {'success': False}
+        return HttpResponse("Error")
     user_dictionary, _ = UserDictionary.objects.get_or_create(
         user=request.user,
         word=word)
-    return {'success': True}
+    return HttpResponse("OK")
 
 
 def rem_word(request):
