@@ -66,10 +66,10 @@ def send_email(user, my_email):
     :param my_email:
     :return:
     """
-    message = sendgrid.Mail()
-    message.add_to(my_email)
-    message.set_subject('Welcome!')
-    message.set_html(
-        render_to_string('word_stats/welcome_email.html', {'user': user}))
-    message.set_from('fomin.dritmy@gmail.com')
+    message = sendgrid.Mail(
+        to=my_email,
+        subject='Welcome',
+        html=render_to_string('word_stats/welcome_email.html',
+                              {'user': user}),
+        from_email='fomin.dritmy@gmail.com')
     status, msg = sg.send(message)
