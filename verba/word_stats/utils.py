@@ -28,13 +28,13 @@ def text_to_words(text):
     return text
 
 
-def words_analysis(words_list, threeLetters, onlyBase, known_words):
+def words_analysis(words_list, three_letters, only_base, known_words):
     """
     Analyzes words in list. Sorts them by input criteria. Counts frequency
     of new words in text
     :param words_list:
-    :param threeLetters:
-    :param onlyBase:
+    :param three_letters:
+    :param only_Base:
     :param known_words:
     :return:
     """
@@ -46,9 +46,9 @@ def words_analysis(words_list, threeLetters, onlyBase, known_words):
             continue
         elif len(word) == 1:
             continue
-        elif threeLetters and len(word) <= 2:
+        elif three_letters and len(word) <= 2:
             continue
-        elif onlyBase == 'checked':
+        elif only_base:
             word = stem(word)
         elif word not in known_words:
             cnt[word] += 1

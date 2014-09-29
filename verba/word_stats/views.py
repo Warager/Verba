@@ -25,19 +25,18 @@ def process(request):
     if request.method != "POST":
         return redirect("/")
     text = request.POST.get('text', "")
-    threeLetters = request.POST.get('threeLetters') == 'checked'
-    onlyBase = request.POST.get('onlyBase') == 'checked'
+    three_letters = request.POST.get('threeLetters') == 'checked'
+    only_base = request.POST.get('onlyBase') == 'checked'
 
-    try:
+    if request.user.is_authenticated():
         known_words = UserDictionary.objects.values_list(
             'word', flat=True).filter(user=request.user)
-
-    except TypeError:
+    else:
         known_words = []
 
     words_list = text_to_words(text)
-    _, cnt = words_analysis(words_list, threeLetters, onlyBase, known_words)
-    known_in_text, _ = words_analysis(words_list, threeLetters, onlyBase,
+    _, cnt = words_analysis(words_list, three_letters, only_base, known_words)
+    known_in_text, _ = words_analysis(words_list, three_letters, only_base,
                                       known_words)
 
     data = {
@@ -46,6 +45,7 @@ def process(request):
         "known_in_text": sorted(known_in_text)
     }
     return render(request, 'word_stats/analysis.html', data)
+
 
 
 def signup(request):
