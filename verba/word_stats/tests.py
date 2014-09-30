@@ -2,7 +2,7 @@ from django.test import TestCase
 from verba.word_stats.utils import text_to_words
 
 
-class utils_test(TestCase):
+class Utils_test(TestCase):
     def text_to_words_test(self):
         text = "HellO, wORLD 1,0"
         self.assertEqual(text_to_words(text), ['hello', 'world'])

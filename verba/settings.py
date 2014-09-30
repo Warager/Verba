@@ -40,7 +40,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'verba.word_stats',
-    'annoying',
 )
 
 MIDDLEWARE_CLASSES = (

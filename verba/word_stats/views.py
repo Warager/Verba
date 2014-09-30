@@ -1,12 +1,10 @@
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
 from verba.word_stats.utils import text_to_words, words_analysis, send_email
-from annoying.decorators import ajax_request
-
 from verba.word_stats.models import UserDictionary
 
 
@@ -27,19 +25,18 @@ def process(request):
     if request.method != "POST":
         return redirect("/")
     text = request.POST.get('text', "")
-    threeLetters = request.POST.get('threeLetters') == 'checked'
-    onlyBase = request.POST.get('onlyBase') == 'checked'
+    three_letters = request.POST.get('threeLetters') == 'checked'
+    only_base = request.POST.get('onlyBase') == 'checked'
 
-    try:
+    if request.user.is_authenticated():
         known_words = UserDictionary.objects.values_list(
             'word', flat=True).filter(user=request.user)
-
-    except TypeError:
+    else:
         known_words = []
 
     words_list = text_to_words(text)
-    _, cnt = words_analysis(words_list, threeLetters, onlyBase, known_words)
-    known_in_text, _ = words_analysis(words_list, threeLetters, onlyBase,
+    _, cnt = words_analysis(words_list, three_letters, only_base, known_words)
+    known_in_text, _ = words_analysis(words_list, three_letters, only_base,
                                       known_words)
 
     data = {
@@ -48,6 +45,7 @@ def process(request):
         "known_in_text": sorted(known_in_text)
     }
     return render(request, 'word_stats/analysis.html', data)
+
 
 
 def signup(request):
@@ -60,22 +58,22 @@ def signup(request):
     my_pass_conf = request.POST.get('confirm', "")
 
     if User.objects.filter(username=my_email).count():
-        return HttpResponse('Error')
+        return JsonResponse({'reply': 'Error'})
     if my_email == "":
-        return HttpResponse('EmptyUser')
+        return JsonResponse({'reply': 'EmptyUser'})
     if my_password == "":
-        return HttpResponse('EmptyPassword')
+        return JsonResponse({'reply': 'EmptyPassword'})
     if my_password != my_pass_conf:
-        return HttpResponse('Wrong')
+        return JsonResponse({'reply': 'Wrong'})
 
     user = User.objects.create_user(username=my_email, email=my_email)
     user.set_password(my_password)
-    user.set_first_name(my_name)
+    user.first_name = my_name
     user.save()
     user.backend = "django.contrib.auth.backends.ModelBackend"
     auth_login(request, user)
-    send_email(user, my_email)
-    return HttpResponse('OK')
+    # send_email(user, my_email)
+    return JsonResponse({'reply': 'OK'})
 
 
 def login(request):
@@ -88,13 +86,13 @@ def login(request):
     try:
         user = User.objects.get(email__iexact=my_email, is_active=True)
     except User.DoesNotExist:
-        return HttpResponse('Error')
+        return JsonResponse({'reply': 'Error'})
 
     if not user.check_password(my_password):
-        return HttpResponse('Error')
+        return JsonResponse({'reply': 'Error'})
     user.backend = "django.contrib.auth.backends.ModelBackend"
     auth_login(request, user)
-    return HttpResponse('OK')
+    return JsonResponse({'reply': 'OK', 'navhead': '.navhead'})
 
 
 @login_required
@@ -105,18 +103,18 @@ def logout(request):
     auth.logout(request)
     return redirect('/')
 
-@ajax_request
+
 def add_word(request):
     """
     Adds words to the user's personal dictionary
     """
     word = request.POST.get('word', "")
     if word == "":
-        return {'success': False}
+        return JsonResponse({'reply': 'Error'})
     user_dictionary, _ = UserDictionary.objects.get_or_create(
         user=request.user,
         word=word)
-    return {'success': True}
+    return JsonResponse({'reply': 'OK'})
 
 
 def rem_word(request):
@@ -128,8 +126,8 @@ def rem_word(request):
         UserDictionary.objects.filter(user=request.user,
                                       word=word_to_rem).delete()
     except UserDictionary.DoesNotExist:
-        return HttpResponse('DoesNotExist')
-    return HttpResponse('OK')
+        return JsonResponse({'reply': 'DoesNotExist'})
+    return JsonResponse({'reply': 'OK'})
 
 
 def my_dictionary(request):

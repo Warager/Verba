@@ -28,13 +28,13 @@ def text_to_words(text):
     return text
 
 
-def words_analysis(words_list, threeLetters, onlyBase, known_words):
+def words_analysis(words_list, three_letters, only_base, known_words):
     """
     Analyzes words in list. Sorts them by input criteria. Counts frequency
     of new words in text
     :param words_list:
-    :param threeLetters:
-    :param onlyBase:
+    :param three_letters:
+    :param only_Base:
     :param known_words:
     :return:
     """
@@ -46,9 +46,9 @@ def words_analysis(words_list, threeLetters, onlyBase, known_words):
             continue
         elif len(word) == 1:
             continue
-        elif threeLetters and len(word) <= 2:
+        elif three_letters and len(word) <= 2:
             continue
-        elif onlyBase == 'checked':
+        elif only_base:
             word = stem(word)
         elif word not in known_words:
             cnt[word] += 1
@@ -66,10 +66,10 @@ def send_email(user, my_email):
     :param my_email:
     :return:
     """
-    message = sendgrid.Mail()
-    message.add_to(my_email)
-    message.set_subject('Welcome!')
-    message.set_html(
-        render_to_string('word_stats/welcome_email.html', {'user': user}))
-    message.set_from('fomin.dritmy@gmail.com')
+    message = sendgrid.Mail(
+        to=my_email,
+        subject='Welcome',
+        html=render_to_string('word_stats/welcome_email.html',
+                              {'user': user}),
+        from_email='fomin.dritmy@gmail.com')
     status, msg = sg.send(message)
