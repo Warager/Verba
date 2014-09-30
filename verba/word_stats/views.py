@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
+from django.template.loader import render_to_string
 from verba.word_stats.utils import text_to_words, words_analysis, send_email
 from verba.word_stats.models import UserDictionary
 
@@ -15,7 +16,7 @@ def input_form(request):
     data = {
         "current_page": 'home'
     }
-    return render(request, 'word_stats/input_form.html', data)
+    return render(request, 'accounts/input_form.html', data)
 
 
 def process(request):
@@ -44,8 +45,7 @@ def process(request):
         "known_words": sorted(known_words),
         "known_in_text": sorted(known_in_text)
     }
-    return render(request, 'word_stats/analysis.html', data)
-
+    return render(request, 'accounts/analysis.html', data)
 
 
 def signup(request):
@@ -92,7 +92,8 @@ def login(request):
         return JsonResponse({'reply': 'Error'})
     user.backend = "django.contrib.auth.backends.ModelBackend"
     auth_login(request, user)
-    return JsonResponse({'reply': 'OK', 'navhead': '.navhead'})
+    return JsonResponse({'reply': 'OK', 'navhead': render_to_string(
+        'word_stats/navhead.html', {'user': user})})
 
 
 @login_required
@@ -160,4 +161,4 @@ def my_dictionary(request):
         "known_words": sorted(known_words),
         "current_page": "my_dictionary"
     }
-    return render(request, "word_stats/my_dictionary.html", data)
+    return render(request, "accounts/my_dictionary.html", data)

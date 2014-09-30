@@ -3,7 +3,7 @@ from django.template.loader import render_to_string
 from sendgrid import sendgrid
 from stemming.porter2 import stem
 from collections import Counter
-from verba.settings import sg
+from verba.settings import sg, DEFAULT_EMAIL
 
 
 def text_to_words(text):
@@ -34,7 +34,7 @@ def words_analysis(words_list, three_letters, only_base, known_words):
     of new words in text
     :param words_list:
     :param three_letters:
-    :param only_Base:
+    :param only_base:
     :param known_words:
     :return:
     """
@@ -69,7 +69,7 @@ def send_email(user, my_email):
     message = sendgrid.Mail(
         to=my_email,
         subject='Welcome',
-        html=render_to_string('word_stats/welcome_email.html',
+        html=render_to_string('accounts/welcome_email.html',
                               {'user': user}),
-        from_email='fomin.dritmy@gmail.com')
+        from_email=DEFAULT_EMAIL)
     status, msg = sg.send(message)
