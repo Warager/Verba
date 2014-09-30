@@ -11,7 +11,6 @@ $(function () {
         if (res.success) {
           $('.headline').html(res.headline);
           $('#signIn').modal("hide")
-
         }
         else if (res.error == 'error'){
           $(".invalidInput").show()

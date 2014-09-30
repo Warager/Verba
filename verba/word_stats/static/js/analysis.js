@@ -13,7 +13,7 @@ $(function (){
         word: $(this).closest('tr').find('.wordInTable').text()
       },
       success: function (res) {
-        if (res == "OK") {
+        if (res.success) {
           newRow.find('td:nth-child(2)').html(newRowWord.text());
           newRow.find('td:nth-child(1)').html(parseInt(newRowNum.text()) + 1);
           newRow.appendTo('.users-word-table');

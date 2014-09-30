@@ -5,6 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
 from django.template.loader import render_to_string
+from django.views.decorators.csrf import csrf_exempt
 from verba.word_stats.utils import text_to_words, words_analysis, send_email
 from verba.word_stats.models import UserDictionary
 
@@ -19,6 +20,7 @@ def input_form(request):
     return render(request, 'word_stats/input_form.html', data)
 
 
+@csrf_exempt
 def process(request):
     """
     Main computation of words entered by user
@@ -111,11 +113,11 @@ def add_word(request):
     """
     word = request.POST.get('word', "")
     if word == "":
-        return {'success': False}
+        return JsonResponse({'success': False})
     user_dictionary, _ = UserDictionary.objects.get_or_create(
         user=request.user,
         word=word)
-    return {'success': True}
+    return JsonResponse({'success': True})
 
 
 def rem_word(request):
