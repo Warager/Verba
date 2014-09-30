@@ -1,12 +1,11 @@
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
+from django.template.loader import render_to_string
 from verba.word_stats.utils import text_to_words, words_analysis, send_email
-from annoying.decorators import ajax_request
-
 from verba.word_stats.models import UserDictionary
 
 
@@ -27,19 +26,18 @@ def process(request):
     if request.method != "POST":
         return redirect("/")
     text = request.POST.get('text', "")
-    threeLetters = request.POST.get('threeLetters') == 'checked'
-    onlyBase = request.POST.get('onlyBase') == 'checked'
+    three_letters = request.POST.get('threeLetters') == 'checked'
+    only_base = request.POST.get('onlyBase') == 'checked'
 
-    try:
+    if request.user.is_authenticated():
         known_words = UserDictionary.objects.values_list(
             'word', flat=True).filter(user=request.user)
-
-    except TypeError:
+    else:
         known_words = []
 
     words_list = text_to_words(text)
-    _, cnt = words_analysis(words_list, threeLetters, onlyBase, known_words)
-    known_in_text, _ = words_analysis(words_list, threeLetters, onlyBase,
+    _, cnt = words_analysis(words_list, three_letters, only_base, known_words)
+    known_in_text, _ = words_analysis(words_list, three_letters, only_base,
                                       known_words)
 
     data = {
@@ -88,13 +86,14 @@ def login(request):
     try:
         user = User.objects.get(email__iexact=my_email, is_active=True)
     except User.DoesNotExist:
-        return HttpResponse('Error')
+        return JsonResponse({'success': False, 'error': 'error'})
 
     if not user.check_password(my_password):
-        return HttpResponse('Error')
+        return JsonResponse({'success': False, 'error': 'error'})
     user.backend = "django.contrib.auth.backends.ModelBackend"
     auth_login(request, user)
-    return HttpResponse('OK')
+    return JsonResponse({'success': True, 'headline': render_to_string(
+        'headline.html', {'user': user})})
 
 
 @login_required
@@ -105,7 +104,7 @@ def logout(request):
     auth.logout(request)
     return redirect('/')
 
-@ajax_request
+
 def add_word(request):
     """
     Adds words to the user's personal dictionary

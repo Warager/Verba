@@ -2,12 +2,12 @@ from django.test import TestCase
 from verba.word_stats.utils import text_to_words
 
 
-class utils_test(TestCase):
-    def text_to_words_test(self):
+class Utils_test(TestCase):
+    def test_text_to_words(self):
         text = "HellO, wORLD 1,0"
         self.assertEqual(text_to_words(text), ['hello', 'world'])
 
-    def words_analysis_test(self):
+    def test_words_analysis(self):
         test_words = ['hello', 'hello', 'forever', 'i', 'young', 'i', 'am',
                       'i', 'going', 'spells', 'attachments',
                       'killed', 'diving', 'fitness', 'situated', 'starts']
