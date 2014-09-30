@@ -6,7 +6,7 @@ from django.db import models, migrations
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('accounts', '0002_userdictionary_created'),
+        ('word_stats', '0002_userdictionary_created'),
     ]
 
     operations = [

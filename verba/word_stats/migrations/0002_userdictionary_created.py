@@ -7,7 +7,7 @@ import datetime
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('accounts', '0001_initial'),
+        ('word_stats', '0001_initial'),
     ]
 
     operations = [

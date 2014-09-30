@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'verba.word_stats',
+    'annoying',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -78,8 +79,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
-
-DEFAULT_EMAIL = 'fomin.dritmy@gmail.com'
 
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
