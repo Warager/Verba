@@ -34,7 +34,6 @@ $(function (){
 //        }
       },
       error: ajaxError
-//          $('#signInOrSignUp').modal("show");
     });
   });
   $('#extraBtn').click(function () {

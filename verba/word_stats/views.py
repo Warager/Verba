@@ -27,8 +27,6 @@ def process(request):
     """
     if request.method != "POST":
         return redirect("/")
-    # if not request.user.is_authenticated():
-    #     return JsonResponse({'success': False, 'error': 'error'})
     text = request.POST.get('text', "")
     three_letters = request.POST.get('threeLetters') is True
     only_base = request.POST.get('onlyBase') is True
@@ -44,12 +42,6 @@ def process(request):
     known_in_text, _ = words_analysis(words_list, three_letters, only_base,
                                       known_words)
 
-    # data = {
-    #     "words": sorted(cnt.items()),
-    #     "known_words": sorted(known_words),
-    #     "known_in_text": sorted(known_in_text)
-    # }
-    # return render(request, 'word_stats/analysis.html', data)
     return JsonResponse({'success': True,
                          'analysis': render_to_string(
                              'analysis.html', {
@@ -79,12 +71,13 @@ def signup(request):
 
     user = User.objects.create_user(username=my_email, email=my_email)
     user.set_password(my_password)
-    user.set_first_name(my_name)
+    user.first_name = my_name
     user.save()
     user.backend = "django.contrib.auth.backends.ModelBackend"
     auth_login(request, user)
-    send_email(user, my_email)
-    return JsonResponse({'success': True})
+    # send_email(user, my_email)
+    return JsonResponse({'success': True, 'headline': render_to_string(
+        'headline.html', {'user': user})})
 
 
 def login(request):

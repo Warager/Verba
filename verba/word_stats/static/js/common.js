@@ -48,7 +48,7 @@ $(function () {
           });
         }
       },
-      error: ajaxError
+      error: $('#signInOrSignUp').modal("show")
     });
   });
   $(document).on('click', '.remWord', function () {
@@ -85,16 +85,6 @@ $(function () {
     $('.my-dict-show').show();
     $('.my-dict-hide').hide();
   });
-//  $('.my-dict-show').click(function () {
-//    $('.users-word-table').show();
-//    $('.my-dict-show').hide();
-//    $('.my-dict-hide').show();
-//  });
-//  $('.my-dict-hide').click(function () {
-//    $('.users-word-table').hide();
-//    $('.my-dict-show').show();
-//    $('.my-dict-hide').hide();
-//  });
 });
 
 function ajaxError() {

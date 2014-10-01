@@ -48,7 +48,7 @@ def words_analysis(words_list, three_letters, only_base, known_words):
             continue
         elif three_letters and len(word) <= 2:
             continue
-        elif only_base:
+        elif only_base == 'checked':
             word = stem(word)
         elif word not in known_words:
             cnt[word] += 1

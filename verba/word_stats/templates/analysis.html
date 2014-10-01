@@ -1,5 +1,12 @@
 {% block analysis %}
 <div class="jumbotron">
+  <p>
+    <button class="back-to_mail btn btn-lg btn-default"><span
+            class="glyphicon glyphicon-chevron-left"></span> Return to main
+      page
+    </button>
+  </p>
+  <br>
   <h3>Information!</h3>
 
   <p>Table below consist of words, that we checked for you. You can add known
@@ -7,7 +14,6 @@
     you will check some new text, words from your dictionary will be ignored.
     Your know <span class="num-of-words">{{ known_in_text | length }}</span>
     words in this text. You can show them by pressing "Show known words"</p>
-
   <p>
     <button class="my-dict-show btn btn-lg btn-primary">Show known words
     </button>
@@ -95,6 +101,3 @@
   </tbody>
 </table>
 {% endblock %}
-{#{% block script %}#}
-{#  <script src="/static/js/analysis.js"></script>#}
-{#{% endblock %}#}

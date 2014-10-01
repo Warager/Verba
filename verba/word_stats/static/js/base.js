@@ -33,8 +33,9 @@ $(function () {
       success: function (res) {
         if (res.success) {
           $('#signUp').hide();
+          $('.headline').html(res.headline);
           $('#ThankYou').modal("show").on('hide.bs.modal', function () {
-            document.location.reload();
+            $('#signUp').modal('hide');
           });
         }
         else if (res.error == "wrong") {
