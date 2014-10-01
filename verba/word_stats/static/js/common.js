@@ -33,13 +33,13 @@ $(function () {
         wordToRem: row.find('.wordInTable').text()
       },
       success: function (res) {
-        if (res == "OK") {
+        if (res.success) {
           $('.num-of-words').html(parseInt(numOfWords.text()) - 1);
           $('.countWords').each(function (index, td) {
             $(td).text(index)
           });
         }
-        else if (res == "DoesNotExist") {
+        else if (res.error == "does_not_exist") {
           alert("Word Does Not Exist!")
         }
       },

@@ -31,22 +31,22 @@ $(function () {
         confirm: $('#myNewPasswordConfirm').val()
       },
       success: function (res) {
-        if ((res) == "OK") {
+        if (res.success) {
           $('#signUp').hide();
           $('#ThankYou').modal("show").on('hide.bs.modal', function () {
             document.location.reload();
           });
         }
-        else if ((res) == "Wrong") {
+        else if (res.error == "wrong") {
           $(".invalidPassword").show()
         }
-        else if ((res) == "EmptyUser") {
+        else if (res.error == "empty_user") {
           $(".emptyUserName").show()
         }
-        else if ((res) == "EmptyPassword") {
+        else if (res.error == "empty_password") {
           $(".emptyPassword").show()
         }
-        else {
+        else  if (res.error == "error"){
           $(".invalidUserName").show()
         }
       },

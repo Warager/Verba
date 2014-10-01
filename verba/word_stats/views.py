@@ -60,13 +60,13 @@ def signup(request):
     my_pass_conf = request.POST.get('confirm', "")
 
     if User.objects.filter(username=my_email).count():
-        return HttpResponse('Error')
+        return JsonResponse({'success': False, 'error': 'error'})
     if my_email == "":
-        return HttpResponse('EmptyUser')
+        return JsonResponse({'success': False, 'error': 'empty_user'})
     if my_password == "":
-        return HttpResponse('EmptyPassword')
+        return JsonResponse({'success': False, 'error': 'empty_password'})
     if my_password != my_pass_conf:
-        return HttpResponse('Wrong')
+        return JsonResponse({'success': False, 'error': 'wrong'})
 
     user = User.objects.create_user(username=my_email, email=my_email)
     user.set_password(my_password)
@@ -75,7 +75,7 @@ def signup(request):
     user.backend = "django.contrib.auth.backends.ModelBackend"
     auth_login(request, user)
     send_email(user, my_email)
-    return HttpResponse('OK')
+    return JsonResponse({'success': True})
 
 
 def login(request):
@@ -129,8 +129,8 @@ def rem_word(request):
         UserDictionary.objects.filter(user=request.user,
                                       word=word_to_rem).delete()
     except UserDictionary.DoesNotExist:
-        return HttpResponse('DoesNotExist')
-    return HttpResponse('OK')
+        return JsonResponse({'success': False, 'error': 'does_not_exist'})
+    return JsonResponse({'success': True})
 
 
 def my_dictionary(request):
