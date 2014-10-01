@@ -1,0 +1,100 @@
+{% block analysis %}
+<div class="jumbotron">
+  <h3>Information!</h3>
+
+  <p>Table below consist of words, that we checked for you. You can add known
+    word into your personal dictionary by pressing "Know it". Next time, when
+    you will check some new text, words from your dictionary will be ignored.
+    Your know <span class="num-of-words">{{ known_in_text | length }}</span>
+    words in this text. You can show them by pressing "Show known words"</p>
+
+  <p>
+    <button class="my-dict-show btn btn-lg btn-primary">Show known words
+    </button>
+  </p>
+  <p>
+    <button class="my-dict-hide btn btn-lg btn-default">Hide known words
+    </button>
+  </p>
+</div>
+<table class="table table-striped users-word-table" data-role="table">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Your known words</th>
+    <th>Unknown word</th>
+    {#          <th>Frequency of use in text</th>#}
+    {#          <th>I don't know this word!</th>#}
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="sample-row">
+    <td class="countWords">0</td>
+    <td class="wordInTable">Word</td>
+    <td>
+      <button type="submit" class="btn btn-default btn-sm remWord">Unknown
+        word!
+      </button>
+    </td>
+  </tr>
+  {% for obj in known_in_text %}
+    <tr>
+      <td class="countWords">{{ forloop.counter }}</td>
+      <td class="wordInTable">{{ obj }}</td>
+      <td>
+        <button type="submit" class="btn btn-default btn-sm remWord">Unknown
+          word!
+        </button>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<button class="my-dict-hide btn btn-lg btn-default">Hide known words</button>
+<br class="my-dict-hide">
+<br class="my-dict-hide">
+<br class="my-dict-hide">
+<table class="table table-striped new-word-table">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Word</th>
+    <th>Frequency of use in text</th>
+    <th>I know this word!</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="sample-row">
+    <td class="countNewWords">0</td>
+    <td class="wordInTable">Word</td>
+    <td>
+      <button type="submit" class="btn btn-default btn-sm addWord">New
+        word!
+      </button>
+    </td>
+  </tr>
+  {% for obj in words %}
+    <tr>
+      <td class="countNewWords">{{ forloop.counter }}</td>
+      <td class="wordInTable">{{ obj.0 }}</td>
+      <td>{{ obj.1 }}</td>
+      <td>
+        {% csrf_token %}
+{#        {% if user.is_authenticated %}#}
+          <button type="submit" class="btn btn-default btn-sm addWord">Know
+            it!
+          </button>
+{#        {% else %}#}
+{#          <button type="submit" class="btn btn-default btn-sm"#}
+{#                  data-toggle="modal" data-target="#signInOrSignUp">Know it!#}
+{#          </button>#}
+{#        {% endif %}#}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+{#{% block script %}#}
+{#  <script src="/static/js/analysis.js"></script>#}
+{#{% endblock %}#}

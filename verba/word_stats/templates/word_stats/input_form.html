@@ -7,16 +7,13 @@
       learn unknown and foreign words.<br>
       Just put your text in box below and check it!</p>
   </div>
-  <form role="form" action="/process" method="POST">
+{#  <form role="form" action="/process" method="POST">#}
+  <div>
     {% csrf_token %}
     <h3 class="form-signin-heading">Please enter your text</h3>
-    <textarea name="text" cols="170" rows="10"></textarea>
+    <textarea id="textarea" name="text" cols="170" rows="10"></textarea>
     <br>
-    {#        {% if user.is_authenticated %}#}
-    <button class="btn btn-primary" type="submit">Check</button>
-    {#        {% else %}#}
-    {#        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#signInOrSignUp">Check</button>#}
-    {#        {% endif %}#}
+    <button class="btn btn-primary process" type="submit">Check</button>
     <div class="btn-group" data-toggle="buttons">
       <label id="extraBtn" class="btn btn-link">
         <input type="radio">Extra
@@ -28,16 +25,17 @@
              data-container="body" data-toggle="popover"
              data-placement="top"
              data-content="This extra option ignores words of less than three letters.">
-        <input type="checkbox" name="threeLetters" value="checked">3 letters
+        <input type="checkbox" id="threeLetters" value="">3 letters
       </label>
       <label id="onlyBase-popover" class="btn btn-link extraFeature"
              data-container="body" data-toggle="popover"
              data-placement="top"
              data-content="This extra option returns only base of word without suffixes and prefixes.">
-        <input type="checkbox" name="onlyBase" value="checked">Base
+        <input type="checkbox" id="onlyBase" value="checked">Base
       </label>
     </div>
-  </form>
+  </div>
+{#  </form>#}
 {% endblock %}
 {% block script %}
   <script src="/static/js/input_form.js"></script>

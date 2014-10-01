@@ -27,9 +27,11 @@ def process(request):
     """
     if request.method != "POST":
         return redirect("/")
+    # if not request.user.is_authenticated():
+    #     return JsonResponse({'success': False, 'error': 'error'})
     text = request.POST.get('text', "")
-    three_letters = request.POST.get('threeLetters') == 'checked'
-    only_base = request.POST.get('onlyBase') == 'checked'
+    three_letters = request.POST.get('threeLetters') is True
+    only_base = request.POST.get('onlyBase') is True
 
     if request.user.is_authenticated():
         known_words = UserDictionary.objects.values_list(
@@ -42,12 +44,19 @@ def process(request):
     known_in_text, _ = words_analysis(words_list, three_letters, only_base,
                                       known_words)
 
-    data = {
-        "words": sorted(cnt.items()),
-        "known_words": sorted(known_words),
-        "known_in_text": sorted(known_in_text)
-    }
-    return render(request, 'word_stats/analysis.html', data)
+    # data = {
+    #     "words": sorted(cnt.items()),
+    #     "known_words": sorted(known_words),
+    #     "known_in_text": sorted(known_in_text)
+    # }
+    # return render(request, 'word_stats/analysis.html', data)
+    return JsonResponse({'success': True,
+                         'analysis': render_to_string(
+                             'analysis.html', {
+                                 "words": sorted(cnt.items()),
+                                 "known_words": sorted(known_words),
+                                 "known_in_text": sorted(known_in_text)
+                             })})
 
 
 def signup(request):
