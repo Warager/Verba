@@ -10,7 +10,8 @@ $(function () {
       success: function (res) {
         if (res.success) {
           $('.headline').html(res.headline);
-          $('#signIn').modal("hide")
+          $('#signIn').modal("hide");
+          $(document).trigger('login');
         }
         else if (res.error == 'error'){
           $(".invalidInput").show()
@@ -32,11 +33,12 @@ $(function () {
       },
       success: function (res) {
         if (res.success) {
-          $('#signUp').hide();
           $('.headline').html(res.headline);
+          $('#signUp').hide();
           $('#ThankYou').modal("show").on('hide.bs.modal', function () {
             $('#signUp').modal('hide');
           });
+          $(document).trigger('login');
         }
         else if (res.error == "wrong") {
           $(".invalidPassword").show()

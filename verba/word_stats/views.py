@@ -113,9 +113,11 @@ def add_word(request):
     """
     Adds words to the user's personal dictionary
     """
-    word = request.POST.get('word', "")
-    if word == "":
+    if not request.user.is_authenticated():
         return JsonResponse({'success': False})
+    word = request.POST.get('word', "")
+    # if word == "":
+    #     return JsonResponse({'success': False})
     user_dictionary, _ = UserDictionary.objects.get_or_create(
         user=request.user,
         word=word)

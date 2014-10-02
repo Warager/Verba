@@ -47,8 +47,11 @@ $(function () {
             $(td).text(index)
           });
         }
+        else {
+          $('#signInOrSignUp').modal("show")
+        }
       },
-      error: $('#signInOrSignUp').modal("show")
+      error: ajaxError
     });
   });
   $(document).on('click', '.remWord', function () {
@@ -90,3 +93,24 @@ $(function () {
 function ajaxError() {
   alert('Ooops! Something get wrong!')
 }
+
+function processWords() {
+  $.ajax({
+    url: "process",
+    method: "POST",
+    data: {
+      text: $('#textarea').val(),
+      threeLetters: $('#threeLetters').is(':checked'),
+      onlyBase: $('#onlyBase').is(':checked')
+    },
+    success: function (res) {
+      if (res.success) {
+        var analysis = $('.analysis');
+        analysis.html(res.analysis);
+        $('.general').hide();
+        analysis.show();
+      }
+    },
+    error: ajaxError
+  });
+};
