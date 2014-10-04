@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import dj_database_url
-import sendgrid
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -40,7 +39,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'verba.word_stats',
-    'annoying',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -93,6 +91,8 @@ try:
     from local_settings import *
 except ImportError:
     pass
+
 DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
 
-sg = sendgrid.SendGridClient('warager', 'cfyahfy!')
+SENDGRID_USERNAME = os.environ.get('SENDGRID_USERNAME', SENDGRID_USER)
+SENDGRID_PASSWORD = os.environ.get('SENDGRID_PASSWORD', SENDGRID_PASS)

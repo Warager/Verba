@@ -1,7 +1,7 @@
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
 from django.template.loader import render_to_string
@@ -28,8 +28,8 @@ def process(request):
     if request.method != "POST":
         return redirect("/")
     text = request.POST.get('text', "")
-    three_letters = request.POST.get('threeLetters') is True
-    only_base = request.POST.get('onlyBase') is True
+    three_letters = request.POST.get('threeLetters') == 'true'
+    only_base = request.POST.get('onlyBase') == 'true'
 
     if request.user.is_authenticated():
         known_words = UserDictionary.objects.values_list(
@@ -116,8 +116,6 @@ def add_word(request):
     if not request.user.is_authenticated():
         return JsonResponse({'success': False})
     word = request.POST.get('word', "")
-    # if word == "":
-    #     return JsonResponse({'success': False})
     user_dictionary, _ = UserDictionary.objects.get_or_create(
         user=request.user,
         word=word)

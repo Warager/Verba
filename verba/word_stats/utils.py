@@ -3,7 +3,7 @@ from django.template.loader import render_to_string
 from sendgrid import sendgrid
 from stemming.porter2 import stem
 from collections import Counter
-from verba.settings import sg, DEFAULT_EMAIL
+from verba.settings import DEFAULT_EMAIL, SENDGRID_USERNAME, SENDGRID_PASSWORD
 
 
 def text_to_words(text):
@@ -12,19 +12,11 @@ def text_to_words(text):
     :param text:
     :return:
     """
-    for c in string.punctuation + " " + "\n":
+    for c in string.punctuation + string.digits + " " + "\n":
         text = text.replace(c, ".")
 
     text = text.lower().strip().split(".")
     text = filter(None, text)
-
-    no_digits = []
-    for w in text:
-        try:
-            int(w)
-        except ValueError:
-            no_digits.append(w)
-    text = no_digits
     return text
 
 
@@ -44,18 +36,18 @@ def words_analysis(words_list, three_letters, only_base, known_words):
         word.strip()
         if not word or word == " ":
             continue
-        elif len(word) == 1:
+        if len(word) == 1:
             continue
-        elif three_letters and len(word) <= 2:
-            continue
-        elif only_base == 'checked':
-            word = stem(word)
-        elif word not in known_words:
-            cnt[word] += 1
         if word in known_in_text:
+            continue
+        if only_base:
+            word = stem(word)
+        if three_letters and len(word) <= 2:
             continue
         if word in known_words:
             known_in_text.append(word)
+        else:
+            cnt[word] += 1
     return known_in_text, cnt
 
 
@@ -66,10 +58,18 @@ def send_email(user, my_email):
     :param my_email:
     :return:
     """
-    message = sendgrid.Mail()
-    message.add_to(my_email)
-    message.set_subject('Welcome!')
-    message.set_html(
-        render_to_string('word_stats/welcome_email.html', {'user': user}))
-    message.set_from(DEFAULT_EMAIL)
+    sg = sendgrid.SendGridClient(SENDGRID_USERNAME, SENDGRID_PASSWORD)
+    message = sendgrid.Mail(to=my_email,
+                            subject='Welcome',
+                            html=render_to_string(
+                                'word_stats/welcome_email.html', {
+                                    'user': user}),
+                            from_email=DEFAULT_EMAIL)
     status, msg = sg.send(message)
+    # message.add_to(my_email)
+    # message.set_subject('Welcome!')
+    # message.set_html(
+    #     render_to_string('word_stats/welcome_email.html', {'user': user}))
+    # message.set_from(DEFAULT_EMAIL)
+    # status, msg = sg.send(message)
+

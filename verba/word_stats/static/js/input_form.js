@@ -7,16 +7,16 @@ $(function (){
     $('.analysis').hide();
     $('.general').show();
     $(document).off('login', processWords)
-  $('#extraBtn').click(function () {
+  });
+  $(document).on('click', '#extraBtn', function(){
     $('.extraFeature').show();
     $('#extraBtn').hide();
     $('#extraHide').show();
   });
-  $('#extraHide').click(function () {
+  $(document).on('click', '#extraHide', function(){
     $('.extraFeature').hide();
     $('#extraBtn').show();
     $('#extraHide').hide();
-  });
   });
   $("#3letters-popover").hover(
       function () {
