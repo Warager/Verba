@@ -72,4 +72,3 @@ def send_email(user, my_email):
     #     render_to_string('word_stats/welcome_email.html', {'user': user}))
     # message.set_from(DEFAULT_EMAIL)
     # status, msg = sg.send(message)
-

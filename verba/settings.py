@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import dj_database_url
-from verba import accounts
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -98,5 +97,3 @@ DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
 
 SENDGRID_USERNAME = os.environ.get('SENDGRID_USERNAME', SENDGRID_USER)
 SENDGRID_PASSWORD = os.environ.get('SENDGRID_PASSWORD', SENDGRID_PASS)
-
-# TEMPLATE_DIRS = accounts
