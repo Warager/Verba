@@ -32,7 +32,7 @@ def signup(request):
     user.save()
     user.backend = "django.contrib.auth.backends.ModelBackend"
     auth_login(request, user)
-    # send_email(user, my_email)
+    send_email(user, my_email)
     return JsonResponse({'success': True, 'headline': render_to_string(
         'headline.html', {'user': user})})
 
