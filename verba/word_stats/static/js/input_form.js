@@ -12,6 +12,7 @@ $(function (){
     $('.extraFeature').show();
     $('#extraBtn').hide();
     $('#extraHide').show();
+    activeClass()
   });
   $(document).on('click', '#extraHide', function(){
     $('.extraFeature').hide();
@@ -34,10 +35,10 @@ $(function (){
         $(this).popover("hide");
       }
   );
+});
 
-});
-$(function(){
-  if (($('#threeLetters').is(':checked')) == 1) {
-    $(this).closest('label').addClass('active');
+function activeClass(){
+  if ($('#threeLetters').is(':checked') == true) {
+    $('#threeLetters').closest('label').addClass('active');
   }
-});
+}
