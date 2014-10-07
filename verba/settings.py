@@ -91,6 +91,8 @@ STATICFILES_DIRS = (
 try:
     from local_settings import *
 except ImportError:
+    SENDGRID_USER = ''
+    SENDGRID_PASS = ''
     pass
 
 DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
