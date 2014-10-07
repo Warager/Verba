@@ -34,4 +34,10 @@ $(function (){
         $(this).popover("hide");
       }
   );
+
+});
+$(function(){
+  if (($('#threeLetters').is(':checked')) == 1) {
+    $(this).closest('label').addClass('active');
+  }
 });
