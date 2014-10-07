@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import dj_database_url
+# from verba.local_settings import SENDGRID_USER, SENDGRID_PASS/
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -89,7 +90,7 @@ STATICFILES_DIRS = (
 )
 
 try:
-    from local_settings import *
+    from verba.local_settings import *
 except ImportError:
     SENDGRID_USER = ''
     SENDGRID_PASS = ''
