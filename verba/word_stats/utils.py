@@ -1,6 +1,6 @@
 import string
 from django.template.loader import render_to_string
-from sendgrid import sendgrid
+from sendgrid import sendgrid, Mail
 from stemming.porter2 import stem
 from collections import Counter
 from verba.settings import DEFAULT_EMAIL, SENDGRID_USERNAME, SENDGRID_PASSWORD
@@ -59,12 +59,11 @@ def send_email(user, my_email):
     :return:
     """
     sg = sendgrid.SendGridClient(SENDGRID_USERNAME, SENDGRID_PASSWORD)
-    message = sendgrid.Mail(to=my_email,
-                            subject='Welcome',
-                            html=render_to_string(
-                                'word_stats/welcome_email.html', {
-                                    'user': user}),
-                            from_email=DEFAULT_EMAIL)
+    message = Mail(to=my_email,
+                   subject='Welcome',
+                   html=render_to_string('accounts/welcome_email.html', {
+                       'user': user}),
+                   from_email=DEFAULT_EMAIL)
     status, msg = sg.send(message)
     # message.add_to(my_email)
     # message.set_subject('Welcome!')
