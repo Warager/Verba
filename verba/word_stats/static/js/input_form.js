@@ -9,10 +9,16 @@ $(function (){
     $(document).off('login', processWords)
   });
   $(document).on('click', '#extraBtn', function(){
-    $('.extraFeature').show();
+    $('.extraFeature').show(function(){
+      if ($('#threeLetters').is(':checked')){
+        $('#threeLetters').closest('label').addClass('active');
+      }
+      if ($('#onlyBase').is(':checked')){
+        $('#onlyBase').closest('label').addClass('active');
+      }
+    });
     $('#extraBtn').hide();
     $('#extraHide').show();
-    activeClass()
   });
   $(document).on('click', '#extraHide', function(){
     $('.extraFeature').hide();
@@ -36,9 +42,3 @@ $(function (){
       }
   );
 });
-
-function activeClass(){
-  if ($('#threeLetters').is(':checked') == true) {
-    $('#threeLetters').closest('label').addClass('active');
-  }
-}
