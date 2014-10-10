@@ -16,6 +16,15 @@ def input_form(request):
     return render(request, 'word_stats/input_form.html', data)
 
 
+def about(request):
+    """
+    Renders about page
+    """
+    data = {
+        "current_page": "about"
+    }
+    return render(request, 'word_stats/about.html', data)
+
 @csrf_exempt
 def process(request):
     """
