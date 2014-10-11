@@ -25,6 +25,17 @@ def about(request):
     }
     return render(request, 'word_stats/about.html', data)
 
+
+def contact(request):
+    """
+    Renders about page
+    """
+    data = {
+        "current_page": "contact"
+    }
+    return render(request, 'word_stats/contact.html', data)
+
+
 @csrf_exempt
 def process(request):
     """

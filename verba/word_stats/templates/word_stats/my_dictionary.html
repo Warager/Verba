@@ -2,14 +2,13 @@
 {% block content %}
   <div class="jumbotron">
     <h2>Welcome!</h2>
-
     <p> This is your personal dictionary page. There are <span
             class="num-of-words">{{ known_words | length }}</span> words now.
       There you can read, add or remove words without checking them in text. To
       add some words write them in 'New words' field and press 'Add words'
       button. If you want to remove word from table press 'Unknown word' button
-      near the word.</p>
-
+      near the word.
+    </p>
     <p>
       <button class="my-dict-show btn btn-lg btn-primary">Show my dictionary
       </button>
@@ -30,15 +29,13 @@
   <br class="my-dict-hide">
   <br class="my-dict-hide">
   <br class="my-dict-hide">
-  <table class="table table-striped users-word-table add-word-my-dict"
+  <table class="table table-striped users-word-table"
          data-role="table">
     <thead>
     <tr>
       <th>#</th>
       <th>Your known words</th>
       <th>Unknown word</th>
-      {#          <th>Frequency of use in text</th>#}
-      {#          <th>I don't know this word!</th>#}
     </tr>
     </thead>
     <tbody>

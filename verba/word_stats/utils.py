@@ -65,9 +65,3 @@ def send_email(user, my_email):
                        'user': user}),
                    from_email=DEFAULT_EMAIL)
     status, msg = sg.send(message)
-    # message.add_to(my_email)
-    # message.set_subject('Welcome!')
-    # message.set_html(
-    #     render_to_string('word_stats/welcome_email.html', {'user': user}))
-    # message.set_from(DEFAULT_EMAIL)
-    # status, msg = sg.send(message)
