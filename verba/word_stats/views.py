@@ -1,7 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
-from django.views.decorators.csrf import csrf_exempt
 from verba.word_stats.utils import text_to_words, words_analysis
 from verba.word_stats.models import UserDictionary
 
@@ -36,7 +35,6 @@ def contact(request):
     return render(request, 'word_stats/contact.html', data)
 
 
-@csrf_exempt
 def process(request):
     """
     Main computation of words entered by user
@@ -106,9 +104,7 @@ def my_dictionary(request):
 
         for word in new_words:
             word.strip()
-            if not word or word == " ":
-                continue
-            elif len(word) == 1:
+            if len(word) == 1:
                 continue
             user_dictionary, _ = UserDictionary.objects.get_or_create(
                 user=request.user,

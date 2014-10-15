@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.contrib.auth import login as auth_login
 from django.template.loader import render_to_string
-from verba.word_stats.utils import send_email
+from verba.word_stats.utils import send_welcome_email
 
 
 def signup(request):
@@ -32,7 +32,7 @@ def signup(request):
     user.save()
     user.backend = "django.contrib.auth.backends.ModelBackend"
     auth_login(request, user)
-    send_email(user, my_email)
+    send_welcome_email(user, my_email)
     return JsonResponse({'success': True, 'headline': render_to_string(
         'headline.html', {'user': user})})
 

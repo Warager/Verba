@@ -51,7 +51,7 @@ def words_analysis(words_list, three_letters, only_base, known_words):
     return known_in_text, cnt
 
 
-def send_email(user, my_email):
+def send_welcome_email(user, my_email):
     """
     Sends welcome message on user's email
     :param user:
