@@ -90,7 +90,7 @@ STATICFILES_DIRS = (
 )
 
 try:
-    from verba.local_settings import *
+    from verba.local_settings import *  # noqa
 except ImportError:
     SENDGRID_USER = ''
     SENDGRID_PASS = ''
